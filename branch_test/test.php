@@ -9,6 +9,7 @@ class UniqueAttributesValidator
     */
     public $with;
 
+    public $and;
     /**
     * Validates the attribute of the object.
     * If there is any error, the error message is added to the object.
