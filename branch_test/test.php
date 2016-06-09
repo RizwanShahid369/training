@@ -9,6 +9,10 @@ class UniqueAttributesValidator
     */
     public $with;
 
+    protected function newFunction()
+    {
+	echo 'Conflict method';
+    }
     /**
     * Validates the attribute of the object.
     * If there is any error, the error message is added to the object.
