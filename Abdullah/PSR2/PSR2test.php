@@ -3,6 +3,11 @@ namespace UniqueAttributesValidator;
  
 class UniqueAttributesValidator extends CValidator
 {
+
+	public function addByUmair()
+	{
+		echo "new function by Umair";
+	}	
          /**
          * The attributes boud in the unique contstraint with attribute
          * @var string
