@@ -64,3 +64,25 @@ echo $$$$$$a . "<br>";
 echo $$$$$$$a . "<br>"; 
 
 
+//reference & variables
+$foo = 'bob';
+$bar = &$foo;
+$foo = 'I am';
+//$foo = &1; error
+echo $bar . "<br>";
+
+echo var_dump($x) . "<br>";
+echo var_dump($foo) . "<br>";
+
+$x = 'abc';
+echo var_dump($x) . "<br>";
+
+$x += 3;
+echo var_dump($x) . "<br>";
+
+$arr1[2] = 'too';
+$arr1[1] = 'what';
+echo var_dump($arr1) . "<br>";
+
+$intarr = array(1, 2, 34, 8);
+echo var_dump($intarr) . "<br>";
