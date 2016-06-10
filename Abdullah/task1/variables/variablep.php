@@ -1,7 +1,7 @@
 
 <?php
 class foo {
-    var $bar = 'I am bar.';
+    var $ab = 'I am bar.';
     var $arr = array('I am A.', 'I am B.', 'I am C.');
     var $r   = 'I am r.';
 }
@@ -18,6 +18,8 @@ echo $foo->{$start . $end} . "\n";
 
 $arr = 'arr';
 echo $foo->{$arr[1]} . "\n";
+echo $foo->{$ab};
+echo 
 
 ?>
 
