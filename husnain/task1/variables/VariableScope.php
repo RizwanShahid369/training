@@ -1,10 +1,10 @@
 
 <?php
-$a = 1; /* global scope */
-
+$aaa = 1; /* global scope */
+include 'b.php';
 function test()
 {
-    echo $a; /* reference to local scope variable */
+    echo $aaa; /* reference to local scope variable */
 }
 
 test();
@@ -54,6 +54,23 @@ test3();
 test3();
 test3();
 ?>
+<h3>static with recursion</h3>
+
+<?php
+function mytest()
+{
+    static $count = 0;
+
+    $count++;
+    echo $count."<br>";
+    if ($count < 10) {
+        mytest();
+    }
+    //$count--;
+}
+mytest();
+?>
+
 <h3>References with global and static variables</h3>
 
 <?php
@@ -72,3 +89,4 @@ var_dump($obj);
 test_global_noref();
 var_dump($obj);
 ?>
+
