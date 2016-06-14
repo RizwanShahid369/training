@@ -1,15 +1,35 @@
-<?php
-function test()
-{
-    static $count = 0;
 
-    $count++;
-    echo $count;
-    if ($count < 10) {
-        test();
+<?php
+function &get_instance_ref() {
+    static $obj;
+
+    echo 'Static object: ';
+    var_dump($obj);
+    if (!isset($obj)) {
+        // Assign a reference to the static variable
+        $obj = &new stdclass;
     }
-    $count--;
-    echo "sdsd",$count; 
+    $obj->property++;
+    return $obj;
 }
-echo test();
+
+function &get_instance_noref() {
+    static $obj;
+
+    echo 'Static object: ';
+    var_dump($obj);
+    if (!isset($obj)) {
+        // Assign the object to the static variable
+        $obj = new stdclass;
+    }
+    $obj->property++;
+    return $obj;
+}
+
+$obj1 = get_instance_ref();
+$still_obj1 = get_instance_ref();
+echo "\n";
+$obj2 = get_instance_noref();
+$still_obj2 = get_instance_noref();
 ?>
+

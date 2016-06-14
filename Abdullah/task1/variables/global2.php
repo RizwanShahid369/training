@@ -2,10 +2,10 @@
 <?php
 $a = 1;
 $b = 2;
-
+$c = 0;
 function Sum()
 {
-    $GLOBALS['b'] = $GLOBALS['a'] + $GLOBALS['b'];
+   echo $GLOBALS['c'] = $GLOBALS['a'] + $GLOBALS['b'];
 } 
 
 Sum();
