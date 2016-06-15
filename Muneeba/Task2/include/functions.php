@@ -1,27 +1,31 @@
 <?php
 
-require_once 'config.php';
-global $con;
-$con = $conn;
-function insert($fname, $dob, $fathername, $class, $address, $city, $school)
+function insert()
 {
-    global $con;
+    global $conn;
+    $name = $_REQUEST["name"];
+    $dob = $_REQUEST["dob"];
+    $fathername = $_REQUEST["fname"];
+    $class = $_REQUEST["class"];
+    $address = $_REQUEST["address"];
+    $city = $_REQUEST["city"];
+    $school = $_REQUEST["school"];
+
     $sql = "INSERT INTO Students (full_name, dob, father_name, class, address, city, school)
-    VALUES ('$fname', '$dob', '$fathername', '$class', '$address', '$city', '$school')";
+    VALUES ('$name', '$dob', '$fathername', '$class', '$address', '$city', '$school')";
     //echo $sql;
-    if ($con->query($sql) === true) {
+    if ($conn->query($sql) === true) {
         echo "New record created successfully";
     } else {
-        echo "Error: " . $sql . "<br>" . $con->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 
 function updateName($id, $name)
 {
-    global $con;
-    echo "here I am";
+    global $conn;
     $sql = "UPDATE Students SET full_name='$name' WHERE id='$id'";
-    if ($con->query($sql) === TRUE) {
+    if ($conn->query($sql) === true) {
         echo "Record updated successfully";
     } else {
         echo "Error: " . $sql . "<br>";
@@ -30,109 +34,163 @@ function updateName($id, $name)
 
 function updateDOB($id, $dob)
 {
-    global $con;
+    global $conn;
     $sql = "UPDATE Students SET dob='$dob' WHERE id='$id'";
 
-    if ($con->query($sql) === TRUE) {
+    if ($conn->query($sql) === true) {
         echo "Record updated successfully";
     } else {
-    echo "Error: " . $sql . "<br>";
+        echo "Error: " . $sql . "<br>";
     }
 }
 
 function updateFatherName($id, $name)
 {
-    global $con;
+    global $conn;
     $sql = "UPDATE Students SET father_name='$name' WHERE id='$id'";
 
-    if ($con->query($sql) === TRUE) {
+    if ($conn->query($sql) === true) {
         echo "Record updated successfully";
     } else {
-    echo "Error: " . $sql . "<br>";
+        echo "Error: " . $sql . "<br>";
     }
 }
 function updateClass($id, $class)
 {
-    global $con;
+    global $conn;
     $sql = "UPDATE Students SET class='$class' WHERE id='$id'";
 
-    if ($con->query($sql) === TRUE) {
+    if ($conn->query($sql) === true) {
         echo "Record updated successfully";
     } else {
-    echo "Error: " . $sql . "<br>";
+        echo "Error: " . $sql . "<br>";
     }
 }
 function updateAddress($id, $addr)
 {
-    global $con;
+    global $conn;
     $sql = "UPDATE Students SET address='$addr' WHERE id='$id'";
 
-    if ($con->query($sql) === TRUE) {
+    if ($conn->query($sql) === true) {
         echo "Record updated successfully";
     } else {
-    echo "Error: " . $sql . "<br>" . $con->error;
+        echo "Error: " . $sql . "<br>" . $conn->error;
     }
 }
 function updateCity($id, $city)
 {
+    global $conn;
     $sql = "UPDATE Students SET city='$city' WHERE id='$id'";
 
-    if ($con->query($sql) === TRUE) {
+    if ($conn->query($sql) === true) {
         echo "Record updated successfully";
     } else {
-    echo "Error: " . $sql . "<br>";
+        echo "Error: " . $sql . "<br>";
     }
 }
 function updateSchool($id, $school)
 {
+    global $conn;
     $sql = "UPDATE Students SET school='$school' WHERE id='$id'";
 
-    if ($con->query($sql) === TRUE) {
+    if ($conn->query($sql) === true) {
         echo "Record updated successfully";
     } else {
-    echo "Error: " . $sql . "<br>";
+        echo "Error: " . $sql . "<br>";
     }
 }
 
 function getRecords(&$arr)
 {
-    global $con;
+    global $conn;
     $sql = "Select id, full_name, dob, father_name, class, address, city, school from Students";
-    $result = $con->query($sql);
+    $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        $arr[]= [ $row["id"], $row["full_name"], $row["dob"], $row["father_name"], $row["class"], $row["address"], $row["city"], $row["school"]];
-    }
-   } else {
-    echo "0 results";
+        while ($row = $result->fetch_assoc()) {
+            $arr[]= [
+               $row["id"],
+               $row["full_name"],
+               $row["dob"],
+               $row["father_name"],
+               $row["class"],
+               $row["address"],
+               $row["city"],
+               $row["school"]
+            ];
+        }
+    } else {
+        echo "0 results";
     }
 }
 
-function deleteRecord($id)
+function delete()
 {
-    global $con;
+    global $conn;
+    $id = $_GET["id"];
     $sql = "DELETE FROM Students WHERE id='$id'";
-    if ($con->query($sql) === TRUE) {
+    
+    if ($conn->query($sql) === true) {
         echo "Record deleted successfully";
     } else {
-    echo "Error: " . $sql . "<br>";
+        echo "Error: " . $sql . "<br>";
     }
 }
 
-function getRecord($name, &$array)
+function search()
 {
-    global $con;
-    $sql = "Select id, full_name, dob, father_name, class, address, city, school from Students where full_name LIKE CONCAT ('%', '$name', '%')";
-    echo $sql;
-    $result = $con->query($sql);
+    global $conn;
+    $name = $_POST["sname"];
+    $sql = "Select id, full_name, dob, father_name, class, address, city, school from Students" .
+        " where full_name LIKE CONCAT ('%', '$name', '%')";
+    $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        $array[]= [ $row["id"], $row["full_name"], $row["dob"], $row["father_name"], $row["class"], $row["address"], $row["city"], $row["school"]];
+        while ($row = $result->fetch_assoc()) {
+            $array[]= [
+                $row["id"],
+                $row["full_name"],
+                $row["dob"],
+                $row["father_name"],
+                $row["class"],
+                $row["address"],
+                $row["city"],
+                $row["school"]
+            ];
+        }
+    } else {
+        echo "0 results";
     }
-   } else {
-    echo "0 results";
-    }
+    $_POST['array'] = $array;
 }
 
+function edit()
+{
+    $id = $_POST["id"];
+    $name = (isset($_POST["name"]) && $_POST["name"]) ? $_POST["name"] : '';
+    $dob = (isset($_POST["dob"]) && $_POST["dob"]) ? $_POST["dob"] : '';
+    $fname = (isset($_POST["fname"]) && $_POST["fname"]) ? $_POST["fname"] : '';
+    $class = (isset($_POST["class"]) && $_POST["class"]) ? $_POST["class"] : '';
+    $address = (isset($_POST["address"]) && $_POST["address"]) ? $_POST["address"] : '';
+    $city = (isset($_POST["city"]) && $_POST["city"]) ? $_POST["city"] : '';
+    $school = (isset($_POST["school"]) && $_POST["school"]) ? $_POST["school"] : '';
+    if ($name != '') {
+        updateName($id, $name);
+    }
+    if ($dob != "") {
+        updateDOB($id, $dob);
+    }
+    if ($fname != "") {
+        updateFatherName($id, $fname);
+    }
+    if ($class != "") {
+        updateFatherName($id, $class);
+    }
+    if ($address != "") {
+        updateFatherName($id, $address);
+    }
+    if ($city != "") {
+        updateFatherName($id, $city);
+    }
+    if ($school != "") {
+        updateFatherName($id, $school);
+    }
+}
