@@ -49,9 +49,9 @@ VALUES ('$a','$b','$c','$d','$e','$f','$g','$h')";
     {
 
 
-        $a=$_POST['id'];
-        echo "is is : ".$a; die;
-        $sql = "DELETE FROM student WHERE id=$a";
+        $a=$_GET['id'];
+
+        $sql = "DELETE FROM student WHERE id='$a'";
 
         if ($this->conn->query($sql) === TRUE) {
             echo "Record deleted successfully";
@@ -166,26 +166,34 @@ VALUES ('$a','$b','$c','$d','$e','$f','$g','$h')";
 
     public function search()
     {
-        $id=$_POST["id"];
-        $sql ="SELECT * FROM student where id='$id' ";
+        //$id=$_POST["id"];
+/*        if ($id)
+        {
+            echo "yes";
+        }
+        else
+        {
+            echo "No";
+        }*/
+        $a=$_POST['id'];
+        $sql = "SELECT * FROM student WHERE id=$a   ";
         $result = mysqli_query($this->conn, $sql);
-        //return $result;
-       // $result = mysqli_query($conn, $sql);
 
-    if (mysqli_num_rows($result) > 0) {
-    // output data of each row
-    while($row = mysqli_fetch_assoc($result)) {
-        echo "id: " . $row["id"]. " - Name: " . $row["name"]. " date of birth" . $row["dob"]."father_name " .$row["father_name "]." class" .$row["class"]."Address " .$row["address"]."City " .$row["city"]."School " .$row["school"]."<br>";
-    }
-} else {
-    echo "0 results";
-}
-    }
+        if (mysqli_num_rows($result) ) {
+            // output data of each row
+            while($row = mysqli_fetch_assoc($result)) {
+                echo "id: " . $row["id"]. " -  " . $row["name"]. " " . $row["dob"]." " .$row["father_name "]." " .$row["class"]." " .$row["address"]." " .$row["city"]." " .$row["school"]."<br>";
+            }
+        } else {
+            echo "0 results";
+        }}
 
-    public function searcha($w)
+    public function searcha()
     {
-        echo $w;
-        $sql = "SELECT id, name, dob, father_name, class, address, city, school FROM student WHERE id = '1'";
+        $w=$_POST['id'];
+
+       // echo .w;die();
+        $sql = "SELECT * FROM student WHERE id = '$w'";
         $result = $this->conn->query($sql);
 
         if ($result->num_rows > 0) {
@@ -231,5 +239,6 @@ VALUES ('$a','$b','$c','$d','$e','$f','$g','$h')";
  {
 
     $a->delete();
+     header('Location: http://localhost/training/Abdullah/task3/simple/li.php');
 
  }

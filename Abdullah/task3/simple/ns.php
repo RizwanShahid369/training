@@ -8,9 +8,7 @@
     </p>
 <input type="submit" name ="Submit" />
 
-    <input type="submit" name ="Submit" value="jaj"/>
 
-    <input type="submit" name ="Submit" />
        </form>
 
 
@@ -30,7 +28,7 @@ if (!$conn) {
     die("Connection failed: " . mysqli_connect_error());
 }
 $a=$_POST['id'];
-$sql = "SELECT * FROM student WHERE id=$a   ";
+$sql = "SELECT * FROM student WHERE id=$a";
 $result = mysqli_query($conn, $sql);
 
 if (mysqli_num_rows($result) ) {

@@ -8,7 +8,7 @@
 <form action="update.php" method="post">
     <?php
 
-    $id = $_POST['id'];
+    $id = $_GET['id'];
     $name = $_GET['name'];
     $fname = $_GET['fname'];
     $class = $_GET['class'];
@@ -17,24 +17,26 @@
     $address = $_GET['address'];
     $school = $_GET['school'];
     ?>
-     Name<br>
-    <input type="text" name="id" value=<?php echo htmlentities($id); ?>><br><br>
+     ID<br>
+    <input type="text" name="id" value=<?php echo $id ?>><br><br>
+    Name
+    <input type="text" name="name" value=<?php echo $name ?>><br><br>
     Father Name
-    <input type="text" name="fname" value=<?php echo htmlentities($fname); ?>><br><br>
+    <input type="text" name="fname" value=<?php echo $fname ?>><br><br>
     Date of Birth
-    <input type="text" name="fname" value=<?php echo htmlentities($dob); ?>><br><br>
+    <input type="text" name="dob" value=<?php echo $dob ?>><br><br>
     class<br>
-    <input type="text" name="dob" value=<?php echo htmlentities($class); ?>><br><br>
+    <input type="text" name="class" value=<?php echo $class ?>><br><br>
     Address<br>
-    <input type="text" name="address" value=<?php echo htmlentities($address); ?>><br><br>
+    <input type="text" name="address" value=<?php echo $address ?>><br><br>
     City<br>
-    <input type="text" name="city" value=<?php echo htmlentities($city); ?>> <br><br>
+    <input type="text" name="city" value=<?php echo $city ?>> <br><br>
     School<br>
-    <input type="text" name="school" value=<?php echo htmlentities($school); ?>> <br><br>
+    <input type="text" name="school" value=<?php echo $school?>> <br><br>
 
 <input type="hidden" name="ed" value="ed">
 
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" onclick="" =<?php  ?>
 </form>
 </body>
 </html>

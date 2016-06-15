@@ -12,12 +12,9 @@ $a=new db;
         <input type="text" name="id" id="id">
 
     </p>
-<?php
 
 
-$w=$_POST['id'];?>
-
-    <input type="submit" value="Submit" onclick="<?php $a->searcha($w) ?>">
+    <input type="submit" value="Submit" onclick="<?php $a->search() ?>">
 
 </form>
 
