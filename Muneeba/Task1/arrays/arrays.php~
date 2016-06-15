@@ -146,8 +146,6 @@ $arr = explode(" ",$str);
 print_r($arr);
 echo "<br>";
 
-$arr = array('Today', 'is', 'June', '14th', '2016.');
-$str = implode(" ",$arr);
-echo "<br>";
+
 
 echo $str;
