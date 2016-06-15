@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ffedd36a-2f13-4b55-951b-1825765ab5ba" name="Default" comment="" />
-    <ignored path="Task.iws" />
+    <list default="true" id="b050922a-fa77-433c-b0dd-32f8672b9c27" name="Default" comment="" />
+    <ignored path="include.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -18,82 +18,16 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
-    <favorites_list name="Task" />
+    <favorites_list name="include" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="form.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/form.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ab.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ab.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="462">
-              <caret line="89" column="22" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
-              <folding>
-                <marker date="1465882531755" expanded="true" signature="1322:1371" ph="INSERT INTO Student... " />
-                <marker date="1465882531755" expanded="true" signature="1711:1746" ph="DELETE FROM " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="insert.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/insert.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="427">
-              <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="70" selection-end-column="1" />
-              <folding>
-                <marker date="1465877592982" expanded="true" signature="1026:1075" ph="INSERT INTO Student... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="li.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/li.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-              <folding>
-                <marker date="1465882689523" expanded="true" signature="947:998" ph="Select * fro... Student" />
-                <marker date="1465882689523" expanded="true" signature="968:998" ph="INSERT INTO Student... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/list.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="217">
-              <caret line="53" column="39" selection-start-line="53" selection-start-column="39" selection-end-line="53" selection-end-column="39" />
-              <folding>
-                <marker date="1465884153143" expanded="true" signature="982:1003" ph="SELECT * FRO... Student" />
-                <marker date="1465884153143" expanded="true" signature="982:1018" ph="SELECT * FRO... Student" />
-                <marker date="1465884153143" expanded="true" signature="1048:1125" ph="..." />
-                <marker date="1465884153143" expanded="true" signature="1053:1125" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/form.html" />
-        <option value="$PROJECT_DIR$/ab.php" />
-        <option value="$PROJECT_DIR$/li.php" />
-        <option value="$PROJECT_DIR$/list.php" />
+        <option value="/var/www/html/training/Abdullah/task3/simple/include/conf.php" />
+        <option value="/var/www/html/training/Abdullah/task3/simple/include/functions.php" />
       </list>
     </option>
   </component>
@@ -106,8 +40,8 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="110" />
-    <option name="y" value="64" />
-    <option name="width" value="1246" />
+    <option name="y" value="92" />
+    <option name="width" value="1238" />
     <option name="height" value="704" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -136,32 +70,39 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Task" />
+              <option name="myItemId" value="include" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Task" />
+              <option name="myItemId" value="include" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Task" />
+              <option name="myItemId" value="include" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../simple/include" />
+    <property name="last_opened_file_path" value="/var/www/html/training/Abdullah/task3/simple" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
+    <property name="settings.editor.splitter.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="/var/www/html/training/Abdullah/task3/simple" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -179,6 +120,12 @@
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <envs />
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
@@ -194,24 +141,28 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="ffedd36a-2f13-4b55-951b-1825765ab5ba" name="Default" comment="" />
-      <created>1465465410682</created>
+      <changelist id="b050922a-fa77-433c-b0dd-32f8672b9c27" name="Default" comment="" />
+      <created>1465886435857</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1465465410682</updated>
-      <workItem from="1465465411833" duration="55000" />
-      <workItem from="1465880780376" duration="2949000" />
+      <updated>1465886435857</updated>
+      <workItem from="1465886436977" duration="330000" />
+      <workItem from="1465888136058" duration="104000" />
+      <workItem from="1465901919285" duration="49000" />
+      <workItem from="1465901968839" duration="73000" />
+      <workItem from="1465964217828" duration="107000" />
+      <workItem from="1465964325591" duration="33000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3004000" />
+    <option name="totallyTimeSpent" value="696000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="110" y="64" width="1246" height="704" extended-state="0" />
-    <editor active="true" />
+    <frame x="110" y="92" width="1238" height="704" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24959871" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24959612" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -238,64 +189,31 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/form.html">
+    <entry file="file:///var/www/html/training/Abdullah/task3/simple/include/conf.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///var/www/html/training/Abdullah/task3/simple/include/functions.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/insert.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="427">
-          <caret line="66" column="0" selection-start-line="66" selection-start-column="0" selection-end-line="70" selection-end-column="1" />
-          <folding>
-            <marker date="1465877592982" expanded="true" signature="1026:1075" ph="INSERT INTO Student... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/li.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="74" column="0" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
-          <folding>
-            <marker date="1465882689523" expanded="true" signature="947:998" ph="Select * fro... Student" />
-            <marker date="1465882689523" expanded="true" signature="968:998" ph="INSERT INTO Student... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ab.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="89" column="22" selection-start-line="89" selection-start-column="22" selection-end-line="89" selection-end-column="22" />
-          <folding>
-            <marker date="1465882531755" expanded="true" signature="1322:1371" ph="INSERT INTO Student... " />
-            <marker date="1465882531755" expanded="true" signature="1711:1746" ph="DELETE FROM " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/form.html">
+    <entry file="file:///var/www/html/training/Abdullah/task3/simple/include/conf.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
+          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/list.php">
+    <entry file="file:///var/www/html/training/Abdullah/task3/simple/include/functions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="53" column="39" selection-start-line="53" selection-start-column="39" selection-end-line="53" selection-end-column="39" />
-          <folding>
-            <marker date="1465884153143" expanded="true" signature="982:1003" ph="SELECT * FRO... Student" />
-            <marker date="1465884153143" expanded="true" signature="982:1018" ph="SELECT * FRO... Student" />
-            <marker date="1465884153143" expanded="true" signature="1048:1125" ph="..." />
-            <marker date="1465884153143" expanded="true" signature="1053:1125" ph="..." />
-          </folding>
+        <state relative-caret-position="292">
+          <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
         </state>
       </provider>
     </entry>
