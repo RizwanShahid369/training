@@ -1,5 +1,5 @@
    
-    <form action="insert.php" method="post">
+    <form action="list.php" method="POST">
 
         <p>
 
@@ -38,13 +38,7 @@
 
 
 
-
-
-
-
-
 <?php
-
 $servername = "localhost";
 $username = "root";
 $password = "123";
@@ -56,19 +50,26 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-$a=$_POST['id'];
-$b=$_POST['course'];
-$c=$_POST['pno'];
-$d=$_POST['city'];
+$id=$_POST["id"];
+$result = mysqli_query($conn,"SELECT * FROM Student WHERE id='$id'
+");
 
-$sql = "INSERT INTO Student 
-VALUES ('$a','$b','$c','$d')";
 
-if ($conn->query($sql) === TRUE) {
-    echo "New record created successfully";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+echo "<table width=100%>
+<tr>
+<th>Firstname</th>
+<th>Lastname</th>
+<th>Age</th>
+<th>Gender</th>
+</tr>";
+
+while($row = mysqli_fetch_array($result))
+{
+echo "<tr>";
+echo "<td> " . $row['id'] . "</a> </td>";
+echo "<td>" . $row['course'] .  "</td>";
+echo "<td>" . $row['pno'] . "</td>";
+echo "<td>" . $row['city'] . "</td>";
+echo "</tr>";
 }
-
-$conn->close();
-?> 
+echo "</table>";

@@ -1,18 +1,4 @@
-
-    <!DOCTYPE html>
-
-    <html lang="en">
-
-    <head>
-
-    <meta charset="UTF-8">
-
-    <title>Add Record Form</title>
-
-    </head>
-
-    <body>
-
+   
     <form action="insert.php" method="post">
 
         <p>
@@ -50,9 +36,13 @@
 
     </form>
 
-    </body>
 
-    </html>
+
+
+
+
+
+
 <?php
 
 $servername = "localhost";
