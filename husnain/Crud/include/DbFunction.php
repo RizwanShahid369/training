@@ -7,16 +7,17 @@
  * Time: 3:18 AM
  */
 require_once 'conf.php';
+
 class DbFunction
 {
     public function call()
     {
-        echo "call method called";
+        //echo "call method called";
         $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : "";
-        if ($action == 'create'){
+        if ($action == 'create') {
             echo "calling add()";
             $this->addrecord();
-        } elseif($action == 'delete') {
+        } elseif ($action == 'delete') {
             $this->delete();
         } elseif ($action == 'update') {
             $this->update();
@@ -28,12 +29,12 @@ class DbFunction
 
     public function getRecord()
     {
-        echo "Get record called";
+        //echo "Get record called";
         $id = $_REQUEST['id'];
         $sql = "SELECT * FROM cruddb.students WHERE id = $id";
         global $conn;
         $result = $conn->query($sql);
-        return $result; 
+        return $result;
     }
 
     public function addrecord()
@@ -66,26 +67,28 @@ class DbFunction
             echo "method is not POST";
         }
     }
+
     public function delete()
     {
-        echo "delete Called";
+        //echo "delete Called";
         $id = $_REQUEST['id'];
         $sql = "DELETE FROM cruddb.students WHERE id=$id";
         global $conn;
         if ($conn->query($sql) === TRUE) {
             echo "Record deleted successfully";
-            header('Location: ../manage.php');
+//            header('Location: ../manage.php');
         } else {
             echo "Error deleting record: " . $conn->error;
         }
 
     }
+
     public function update()
     {
 
-        echo "Update Called";
+        //echo "Update Called";
         $uid = $_REQUEST['uid'];
-        echo  "id is --------- ".$uid." that was ";
+        echo "id is --------- " . $uid . " that was ";
         $fullname = $_POST['fullname'];
         $fathers_name = $_POST['fathername'];
         $class = $_POST['class'];
@@ -97,7 +100,7 @@ class DbFunction
         if (empty($fullname) || empty($fathers_name) || empty($class) || empty($school) || empty($city) || empty($address) || empty($date_of_birth)) {
             echo "Please fill all the fields!";
         } else {
-           // echo "updating !!!!!!!!!!!!!!!!!!!<br>";
+
 
             $sql = "UPDATE  cruddb.students SET full_name='$fullname',
               fathers_name = '$fathers_name',
@@ -116,20 +119,21 @@ class DbFunction
             }
 
 
-
         }
 
 
     }
+
     public function getAll()
     {
-        echo "getAll() Called  <br>";
+        //echo "getAll() Called  <br>";
         $sql = "SELECT * FROM cruddb.students";
         global $conn;
         $result = $conn->query($sql);
 
-       return $result;
+        return $result;
     }
+
     public function searchRecords()
     {
         $name = $_POST['name'];
@@ -185,34 +189,13 @@ class DbFunction
 //
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //return $result;
+    //return $result;
 
     //}
 
 
 }
-$ob  = new DbFunction();
+
+$ob = new DbFunction();
 $ob->call();
 //$ob->getAll();
