@@ -5,7 +5,7 @@
     <title>Edit Page</title>
 </head>
 <body>
-<form action="update.php" method="post">
+<form action="update.php" method="get">
     <?php
 
     $id = $_GET['id'];
@@ -18,7 +18,7 @@
     $school = $_GET['school'];
     ?>
      ID<br>
-    <input type="text" name="id" value=<?php echo $id ?>><br><br>
+    <input type="text" name="id" value=<?php echo  $_GET['id']?>><br><br>
     Name
     <input type="text" name="name" value=<?php echo $name ?>><br><br>
     Father Name
