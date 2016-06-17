@@ -81,7 +81,7 @@ class DB
      */
     public function resultSet(&$arr)
     {
-        if (isset($this->sql)) {
+        if(isset($this->sql)) {
             $this->sql->setFetchMode(\PDO::FETCH_ASSOC);
             //$result = $DBH->query($sql);
             while ($row = $this->sql->fetch()) {
@@ -101,7 +101,7 @@ class DB
 
         $key = array_shift($keys);
         $statement = $statement . "($key";
-        for ($i=0; $i<count($keys); $i++) {
+        for ($i=0; $i<count($keys);$i++) {
             $key = array_shift($keys);
             $statement = $statement . ", $key";
         }
@@ -110,7 +110,7 @@ class DB
         $values = array_values($criteria->insertValues);
         $value = array_shift($values);
         $statement = $statement . "($value";
-        for ($i=0; $i<count($values); $i++) {
+        for ($i=0; $i<count($values);$i++) {
             $value = array_shift($values);
             $statement = $statement . ", $value";
         }
@@ -223,3 +223,4 @@ $criteria->insertValues = $array;
 //$db->resultSet($arr);
 // print_r($arr);
 //echo $db->compileQuery();
+
