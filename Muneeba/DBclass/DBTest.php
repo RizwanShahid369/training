@@ -6,6 +6,7 @@
  * Time: 1:25 AM
  */
 namespace DBclass;
+
 use PHPUnit_Framework_TestCase;
 
 require 'DB.php';
@@ -29,33 +30,123 @@ class DBTest extends PHPUnit_Framework_TestCase
      * Validates if the select function is selecting the values from the DB correctly
      *
      * true is the actual outcome
+     *
+     *
+     * @backupGlobals disabled
+     * @backupStaticAttributes disabled
      */
     public function testSelect()
     {
         $criteria = new Criteria();
         $criteria->setSelect('*');
-        $criteria->setWhereEquals('full_name', 'Muneeba');
-        $table = 'Students';
-        $this->assertEquals(true, $this->object->select($table, $criteria));
+        $criteria->whereEquals('full_name', 'Muneeba');
+        $criteria->setTableName('Students');
+        $this->assertEquals(null, $this->object->select($criteria));
     }
 
     /**
      * Validates if the execute is executing the statement  correctly
      *
      * true is the actual outcome
+     * @backupGlobals disabled
+     * @backupStaticAttributes disabled
      */
     public function testExecute()
     {
-        $this->assertEquals(true, $this->object->execute());
+        $this->assertEquals(null, $this->object->execute());
     }
 
     /**
      * Validates if the resultset is providing the desired output  correctly
      *
+     * @backupGlobals disabled
+     * @backupStaticAttributes disabled
      * true is the actual outcome
      */
-    public function testResultSet(&$arr)
+    public function testResultSet()
     {
-        $this->assertEquals(true, $this->object->db->resultSet($arr));
+        $arr = array();
+        $this->assertEquals(null, $this->object->resultSet($arr));
+    }
+    /**
+     * Validates if the resultset is providing the desired output  correctly
+     *
+     * @backupGlobals disabled
+     * @backupStaticAttributes disabled
+     * true is the actual outcome
+     */
+    public function testinsert()
+    {
+        $criteria = new Criteria();
+        $criteria->setTableName('Students');
+        $criteria->insertValues = [
+            'full_name' => "'Somebody'",
+            'father_name' => "'Nobody'"
+        ];
+        $this->assertEquals(null, $this->object->insert($criteria));
+
+    }
+
+    /**
+     * Validates if the resultset is providing the desired output  correctly
+     *
+     * @backupGlobals disabled
+     * @backupStaticAttributes disabled
+     * true is the actual outcome
+     */
+    public function testUpdate()
+    {
+        $criteria = new Criteria();
+        $criteria->setTableName('Students');
+        $criteria->insertValues = [
+            'full_name' => "'Somebody'",
+            'father_name' => "'Nobody'"
+        ];
+        $criteria->whereEquals('id', 14);
+        $this->assertEquals(null, $this->object->update($criteria));
+
+    }
+    /**
+     * Validates if the resultset is providing the desired output  correctly
+     *
+     * @backupGlobals disabled
+     * @backupStaticAttributes disabled
+     * true is the actual outcome
+     */
+    public function testDelete()
+    {
+        $criteria = new Criteria();
+        $criteria->setTableName('Students');
+        $criteria->whereEquals('id', 14);
+        $this->assertEquals(null, $this->object->delete($criteria));
+    }
+
+    /**
+     * Validates if the resultset is providing the desired output  correctly
+     *
+     * @backupGlobals disabled
+     * @backupStaticAttributes disabled
+     * true is the actual outcome
+     */
+    public function testDeleteOne()
+    {
+        $criteria = new Criteria();
+        $criteria->setTableName('Students');
+        $criteria->pk =14;
+        $this->assertEquals(null, $this->object->deleteOne($criteria));
+    }
+    /**
+     * Validates if the resultset is providing the desired output  correctly
+     *
+     * @backupGlobals disabled
+     * @backupStaticAttributes disabled
+     * true is the actual outcome
+     */
+    public function testSelectOne()
+    {
+        $criteria = new Criteria();
+        $criteria->setTableName('Students');
+        $criteria->pk =14;
+        $this->assertEquals(null, $this->object->selectOne($criteria));
     }
 }

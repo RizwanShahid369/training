@@ -15,7 +15,15 @@ class Criteria
     private $where;
     private $groupby;
     private $having;
-    //public $array;
+    private $orderby;
+    private $tableName;
+    private $join;
+    //public $whereParams;
+    public $insertValues;
+    public $setValue;
+    public $pk;
+
+
     /**
      * @return mixed
      */
@@ -29,6 +37,10 @@ class Criteria
         return $this->groupby;
     }
 
+    public function getTableName()
+    {
+        return $this->tableName;
+    }
     /**
      * @return mixed
      */
@@ -48,8 +60,17 @@ class Criteria
     /**
      * @return mixed
      */
+    public function getJoin()
+    {
+        return $this->join;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getSelect()
     {
+
         return $this->select;
     }
 
@@ -62,6 +83,18 @@ class Criteria
     }
 
     /**
+     * @return mixed
+     */
+    public function getOrderBy()
+    {
+        return $this->orderby;
+    }
+
+    public function setTableName($table)
+    {
+        $this->tableName = $table;
+    }
+    /**
      * @param mixed $groupby
      */
     public function setGroupby($groupby)
@@ -72,13 +105,53 @@ class Criteria
     /**
      * @param mixed $having
      */
-    public function setHaving($having)
+    public function havingEquals($column, $value)
     {
         if (isset($this->groupby)) {
-            $this->having = $having;
+            $this->having = "$column = $value";
         }
+    }
+    public function havingAND()
+    {
+        $this->having = $this->having . " AND ";
 
     }
+
+    public function havingLTE($column, $value)
+    {
+        $this->having = $this->having . " $column <= $value";
+
+    }
+
+    public function havingGTE($column, $value)
+    {
+        $this->having = $this->having . " $column >= $value";
+
+    }
+
+    public function havingBETWEEN($column, $value1, $value2)
+    {
+        $this->having = $this->having . " $column BETWEEN $value1 AND $value2";
+
+    }
+
+    public function havingOR()
+    {
+        $this->having = $this->having . " OR";
+    }
+
+    public function havingIN($column, $array)
+    {
+        $this->having = $this->having . " $column IN $array";
+
+    }
+
+    public function havingLike($column, $value)
+    {
+        $this->having = $this->having . " $column LIKE CONCAT ('%', $value, '%')";
+
+    }
+
 
     /**
      * @param mixed $limit
@@ -89,52 +162,89 @@ class Criteria
     }
 
     /**
+     * @param mixed $limit
+     */
+    public function setOrderBy($order, $sort)
+    {
+
+        $this->orderby = $order;
+        for ($i=1; $i<count($order); $i++) {
+            $this->orderby = $this->orderby . ', ' . $order[$i];
+        }
+        echo count($sort);
+        if (count($sort) > 0) {
+            $this->orderby= $this->orderby .  " $sort;";
+        }
+
+    }
+    /**
      * @param mixed $select
      */
     public function setSelect($select)
     {
-        echo "now here";
-        $this->select = $select;
+        if (count($select) == 1) {
+            $this->select = $select;
+        } else {
+            $this->select = $this->select . ", " . $select;
+        }
+
     }
 
     /**
      * @param mixed $where
      */
-    public function setWhere($where)
-    {
-        $this->where = $where;
-    }
 
-    public function whereAND($column, $value)
+
+    public function whereAND()
     {
-        $this->where = $this->where . " AND $column = '$value;'";
+        $this->where = $this->where . " AND ";
 
     }
 
-    public function whereOR($column, $value)
+    public function whereLTE($column, $value)
     {
-        $this->where = $this->where . " OR $column = '$value'";
+        $this->where = $this->where . " $column <= $value";
+
+    }
+
+    public function whereGTE($column, $value)
+    {
+        $this->where = $this->where . " $column >= $value";
+
+    }
+
+    public function whereBETWEEN($column, $value1, $value2)
+    {
+        $this->where = $this->where . " $column BETWEEN $value1 AND $value2";
+
+    }
+
+    public function whereOR()
+    {
+        $this->where = $this->where . " OR";
     }
 
     public function whereIN($column, $array)
     {
-        $this->where = $this->where . " AND $column IN $array";
+        $this->where = $this->where . " $column IN $array";
 
     }
 
     public function whereLike($column, $value)
     {
-        $this->where = $this->where . " AND $column LIKE CONCAT ('%', '$value', '%')";
+        $this->where = $this->where . " $column LIKE CONCAT ('%', $value, '%')";
 
     }
-
-    public function setWhereEquals($column, $value)
+    public function whereEquals($column, $value)
     {
-        $this->where = "$column = '$value'";
+        $this->where = $this->where . " $column = $value";
+        /*$this->where = "$column = :$column";
+        $this->whereParams[]= [$column => $value];
+        print_r($this->whereParams);*/
+    }
+
+    public function setJoin($type, $table2, $fktable1, $fktable2)
+    {
+        $this->join = $this->join . " $type $table2 ON $this->tableName.$fktable1 = $table2.$fktable2 ";
     }
 }
-    /*public function whereEquals($column, $value)
-    {
-        $this->where = "$column = ':value'";
-        $this->array += array($column => '$value');
-    }*/
