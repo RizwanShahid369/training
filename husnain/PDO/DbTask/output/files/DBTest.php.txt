@@ -1,0 +1,61 @@
+<?php
+
+use PHPUnit_Framework_TestCase;
+
+require 'Database.php';
+require_once 'Criteria.php';
+
+/**
+ * Unit test each methods to assert expected and actual value
+ * 
+ * Class DBTest
+ */
+class DBTest extends PHPUnit_Framework_TestCase
+{
+    private $intance;
+
+    public function __construct()
+    {
+        $this->intance = Database::getInstance();
+    }
+
+    public function testInsert()
+    {
+        $this->intance->insert('student', array('first_name' => 'husnain', 'last_name' => 'Zaheer', 'address' => 'PAKISTAN'));
+        $this->assertEquals(null, $this->intance->insert('student', array('first_name' => 'husnain',
+            'last_name' => 'Zaheer',
+            'address' => 'PAKISTAN'))
+        );
+    }
+
+    public function testSelect()
+    {
+        $criteria = new Criteria();
+        $criteria->setColumns(array('first_name', 'last_name'));
+        $this->assertEquals(null, $this->intance->select('student', $criteria));
+
+    }
+
+    public function testUpdateEntity()
+    {
+        $criteria = new Criteria();
+        $criteria->updateColumn(array('first_name' => 'Hello', 'last_name' => 'World'));
+        $this->assertEquals(null, $this->intance->updateEntity('student', $criteria));
+    }
+
+    public function testDeleteByPk()
+    {
+        $criteria = new Criteria();
+        $criteria->whereEqual('id', 10);
+        $this->intance->delete('student', $criteria);
+        $this->assertEquals(null, $this->intance->delete('student', $criteria));
+
+    }
+
+    public function testSelectAll()
+    {
+        $this->assertEquals(null, $this->intance->selectAll('student'));
+    }
+
+
+}
