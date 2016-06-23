@@ -6,35 +6,73 @@
  * Time: 2:16 AM
  */
 
+require_once ('../app/views/viewmanager.php');
+
 class App
 {
-    protected $controller = 'Student';
+    protected $controller = 'actor';
     protected $method = 'findAll';
 
     protected $params = [];
 
     public function __construct()
     {
+        session_start();
         $url = $this->parseURL();
-
-        if (file_exists('../app/controllers/' . $url[0] . 'Controller.php')) {
-            $this->controller = $url[0] . 'Controller';
-            unset($url[0]);
+        //echo $_SESSION['loggedin'];
+        //
+        if ($url[0] == 'logout') {
+            unset($_SESSION);
         }
-        require_once ('../app/controllers/' . $this->controller . '.php');
-        $this->controller = new $this->controller();
+        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+            echo "Welcome to the member's area" . "!";
 
-        if (isset($url[1])) {
-            if (method_exists($this->controller, $url[1])) {
-                $this->method = $url[1];
-                unset($url[1]);
+            if (file_exists('../app/controllers/' . $url[0] . 'Controller.php')) {
+                $this->controller = $url[0];
+                unset($url[0]);
+            }
+            require_once('../app/controllers/' . $this->controller . 'Controller.php');
+            $this->controller = $this->controller . 'Controller';
+            $this->controller = new $this->controller();
+
+            if (isset($url[1])) {
+                if (method_exists($this->controller, $url[1])) {
+                    $this->method = $url[1];
+                    unset($url[1]);
+                }
+            }
+            $this->params = $url ? array_values($url) : [];
+
+            //var_dump($this->method);
+            call_user_func_array([$this->controller, $this->method], $this->params);
+
+        } else {
+            $viewManager = new ViewManager();
+            if (!(isset($_COOKIE['email']) && isset($_COOKIE['password']))) {
+                //echo "Cookie named User is not set!";
+            } else {
+                $viewManager->addParams('email', $_COOKIE['email']);
+                $viewManager->addParams('password', $_COOKIE['password']);
+                //$viewManager->render('login', '');
+            }
+
+            $this->method = $url[0];
+            require_once('../core/controllers/Controller.php');
+
+
+            if ($url[0] == 'Signup' || $url[0] == 'signUp') {
+
+                $viewManager->render('signup', '');
+                var_dump($url[0]);
+                call_user_func_array(Controller::signup(), $this->params);
+
+            } else {
+                call_user_func_array(Controller::login(), $this->params);
+                $viewManager->render('login', '');
             }
         }
-
-        $this->params = $url? array_values($url): [];
-
-        call_user_func_array([$this->controller, $this->method], $this->params);
     }
+
     public function parseURL()
     {
         if(isset($_GET['url'])) {

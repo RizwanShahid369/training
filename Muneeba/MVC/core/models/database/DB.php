@@ -19,7 +19,7 @@ class DB
         $servername = "localhost";
         $username = "root";
         $password = "123";
-        $dbname = "myDB";
+        $dbname = "sakila";
 
         try {
             # MySQL with PDO_MYSQL
@@ -62,10 +62,10 @@ class DB
             $order = $criteria->getOrderby();
             $statement = $statement . " ORDER BY $order ";
         }
-        echo $statement;
+        //echo $statement;
         $this->sql= $this->conn->prepare($statement);
 
-        var_dump($this->sql);
+        //var_dump($this->sql);
     }
 
     public function execute()
@@ -110,14 +110,14 @@ class DB
 
         $values = array_values($criteria->insertValues);
         $value = array_shift($values);
-        $statement = $statement . "($value";
+        $statement = $statement . "('$value'";
         for ($i=0; $i<count($values); $i++) {
             $value = array_shift($values);
-            $statement = $statement . ", $value";
+            $statement = $statement . ", '$value'";
         }
         $statement = $statement . " )";
         $this->sql= $this->conn->prepare($statement);
-
+        //var_dump($this->sql);
         $this->execute();
 
     }
@@ -131,15 +131,16 @@ class DB
         $key = array_shift($keys);
         $values = array_values($criteria->insertValues);
         $value = array_shift($values);
-        $statement = $statement . "$key = $value";
+        $statement = $statement . "$key = '$value'";
         $array= $criteria->insertValues;
         array_shift($array);
         foreach ($array as $column => $value) {
-            $statement = $statement . ", $column = $value";
+            $statement = $statement . ", $column = '$value'";
         }
         $where = $criteria->getWhere();
         $statement = $statement . " WHERE $where ;";
         $this->sql= $this->conn->prepare($statement);
+        var_dump($this->sql);
         $this->execute();
 
     }
@@ -159,11 +160,11 @@ class DB
     public function deleteOne($criteria)
     {
         $table= $criteria->getTableName();
-        $id = $criteria->pk;
-        $statement = "DELETE FROM $table where id = :id";
+        $where = $criteria->getWhere();
+        $statement = "DELETE FROM $table where $where";
 
         $this->sql= $this->conn->prepare($statement);
-        $this->sql->bindParam(':id', $id);
+        //var_dump($this->sql);
 
 
         $this->execute();
@@ -188,8 +189,10 @@ class DB
         $statement = "Select * FROM $table";
 
         $this->sql= $this->conn->prepare($statement);
+        //var_dump($this->sql);
 
     }
+
 
 
     public function compileQuery()

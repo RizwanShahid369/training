@@ -182,15 +182,15 @@ function edit()
         updateFatherName($id, $fname);
     }
     if ($class != "") {
-        updateFatherName($id, $class);
+        updateClass($id, $class);
     }
     if ($address != "") {
-        updateFatherName($id, $address);
+        updateAddress($id, $address);
     }
     if ($city != "") {
-        updateFatherName($id, $city);
+        updateCity($id, $city);
     }
     if ($school != "") {
-        updateFatherName($id, $school);
+        updateSchool($id, $school);
     }
 }
