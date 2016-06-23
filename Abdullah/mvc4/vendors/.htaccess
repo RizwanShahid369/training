@@ -1,0 +1,4 @@
+Options -MutiViews
+RewriteEngine On
+
+RewriteBase /mvc3/public/
