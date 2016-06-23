@@ -182,6 +182,20 @@ class DB
         $this->execute();
     }
 
+    public function selectAll($criteria)
+    {
+        $table= $criteria->getTableName();
+
+        $statement = "Select * FROM $table";
+
+        $this->sql= $this->conn->prepare($statement);
+        var_dump($this->sql);
+
+        $this->execute();
+        $this->resultSet($arr);
+        $_REQUEST['arr'] = $arr;
+    }
+
 
     public function compileQuery()
     {
@@ -198,7 +212,7 @@ $criteria->pk = 14;
 
 //$criteria->whereEquals('full_name', "'Name'");
 //$criteria->setTableName('Students');
-$db->select($criteria);
+$db->selectAll($criteria);
 $db->execute();
 $db->resultSet($arr);
 print_r($arr);

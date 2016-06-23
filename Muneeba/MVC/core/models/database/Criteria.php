@@ -10,7 +10,7 @@ namespace DBclass;
 
 class Criteria
 {
-    private $select;
+    private $select = '*';
     private $limit;
     private $where;
     private $groupby;
@@ -237,7 +237,15 @@ class Criteria
     }
     public function whereEquals($column, $value)
     {
-        $this->where = $this->where . " $column = $value";
+        if(is_numeric($value)) {
+            echo "here";
+            $this->where = $this->where . " $column = $value";
+        } else {
+            $this->where = $this->where . " $column = '$value'";
+        }
+
+
+        //var_dump($this->where);
         /*$this->where = "$column = :$column";
         $this->whereParams[]= [$column => $value];
         print_r($this->whereParams);*/

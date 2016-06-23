@@ -1,0 +1,10 @@
+{* Smarty *}
+{include file="header.tpl" title="Info"}
+
+User Information:<p>
+
+<h6>Hello {$name}, welcome to Smarty!</h6>
+
+{include file="footer.tpl"}
+
+

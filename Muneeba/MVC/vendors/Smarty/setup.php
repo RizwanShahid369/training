@@ -30,19 +30,28 @@ class Smarty_MyApp extends Smarty
         $this->setConfigDir('/configs/');
         $this->setCacheDir('/cache/');*/
 
-        $this->caching = Smarty::CACHING_LIFETIME_CURRENT;
+        //$this->caching = Smarty::CACHING_LIFETIME_CURRENT;
         $this->assign('app_name', 'My App');
     }
 
     function render($view, $controller)
     {
         //require_once ('../app/views/' . $controller . '/' . $view . '.tpl');
-        $this->display('../app/views/' . $controller . '/' . $view . '.tpl');
+        //$this->assign('file', $view . '.tpl');
+        //$this->display('../app/views/' . $controller . '/' . 'index.tpl');
+        if($view == 'login' || $view == 'signup')
+        {
+            $this->display('../app/views/layouts/' . $view . '.tpl');
+        } else {
+            $this->display('../app/views/' . $controller . '/' . $view . '.tpl');
+        }
+
 
     }
 
     function addParams($key, $value)
     {
+        //var_dump($key);
         $this->assign($key, $value);
 
     }

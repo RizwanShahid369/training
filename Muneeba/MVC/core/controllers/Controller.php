@@ -7,6 +7,7 @@
  */
 
 require_once ('../app/views/viewmanager.php');
+require_once ('../core/models/database/Criteria.php');
 
 class Controller
 {
@@ -20,9 +21,70 @@ class Controller
 
     }
 
+    static public function login()
+    {
+        require_once ('../core/models/Model.php');
+        if (isset($_POST['User'])) {
+
+            $user = ($_POST['User']);
+            $email = $user['email'];
+            $password = $user['password'];
+            if (isset($_POST['save']) && $_POST['save'] == 'value1')
+            {
+
+                setcookie("email", $email, time() + (86400 * 30), "/");
+                setcookie('password', $password, time() + (86400 * 30), "/");
+
+                ob_end_flush();
+            }
+            
+            
+            $result = Model::logIn($email, $password);
+            if (($result)<0) {
+                echo "Email or Password is incorrect";
+                return false;
+            } else {
+                var_dump($result);
+                $_SESSION['loggedin'] = $result;
+                //echo $_SESSION['loggedin'];
+            }
+
+            
+        }
+
+
+    }
+
+    static public function signup()
+    {
+        require_once ('../core/models/Model.php');
+        
+
+        if (isset($_POST['User'])) {
+            $user = ($_POST['User']);
+            $email = $user['email'];
+
+            $password = md5($user['password']);
+
+            $result = Model::logIn($email, $password);
+
+            if (($result)) {
+                echo "Email already exists.";
+            } else {
+                $id = Model::signUp($email, $password);
+                $viewManager = new ViewManager();
+
+                $viewManager->addParams('user_id', $id);
+                $viewManager->render('view', 'actor');
+
+            }
+        }
+
+    }
+
     public function setModel($model)
     {
-        require_once ("../app/models/". $model . 'Model.php');
+        require_once ("../app/models/". strtolower($model) . 'Model.php');
         $model = $model . 'Model';
         $this->model = new $model;
         return $this->model;
@@ -32,67 +94,66 @@ class Controller
     {
         $this->viewManager->render('insert', $this->controllerName);
     }
+    public function edit($id = '')
+    {
+        $this->viewManager->addParams('id', $id);
+        $this->viewManager->render('edit', $this->controllerName);
+    }
 
     
     public function add()
     {
-        $criteria = new \DBclass\Criteria();
-        //get parameters through request models from the views
-        //and fill up $criteria
-
-        $this->model->insert($criteria);
+        $arr = $_POST[$this->model->modelName];
+        $this->model->insert($arr);
     }
 
     public function remove()
     {
-        $criteria = new \DBclass\Criteria();
-        //get parameters through request models from the views
-        //and fill up $criteria
-
-        $this->model->delete($criteria);
+        $this->model->delete();
     }
 
     public function findAll()
     {
 
-        //get parameters through request models from the views
-        //and fill up $criteria
-        $criteria = new \DBclass\Criteria();
-        $criteria->setTableName($this->model->modelName . 's');
-        $result = $this->model->selectAll($criteria);
-        /*foreach ($result as $key => $value) {
-            $this->viewManager->addParams($key, $value);
-        }*/
+        $result = $this->model->selectAll();
 
         $this->viewManager->addParams('arr', $result);
         $this->viewManager->render('view', $this->controllerName);
         
     }
 
-    public function edit()
+    public function update()
     {
-        $criteria = new \DBclass\Criteria();
-        //get parameters through request models from the views
-        //and fill up $criteria
+        
+        $insertArr = $_POST[$this->model->modelName];
+        
+        $id = ($_POST[$this->model->columnNames[0]]);
 
-        $this->model->update($criteria);
+
+        $this->model->update($insertArr, $this->model->columnNames[0], $id);
+
+        $this->viewManager->render('view', $this->controllerName);
     }
 
     public function findOne()
     {
-        $criteria = new \DBclass\Criteria();
-        //get parameters through request models from the views
-        //and fill up $criteria
-
-        $this->model->findOne($criteria);
+        $this->model->findOne();
     }
 
-    public function removeOne()
+    public function removeOne($id = '')
     {
-        $criteria = new \DBclass\Criteria();
-        //get parameters through request models from the views
-        //and fill up $criteria
-
-        $this->model->deleteOne($criteria);
+        $this->model->deleteOne($this->model->columnNames[0], $id);
+        $this->viewManager->render('view', $this->controllerName);
     }
+
+    public function search()
+    {
+
+        $param = $_POST[$this->model->modelName];
+
+        $result = $this->model->find($param);
+        $this->viewManager->addParams('arr', $result);
+        $this->viewManager->render('view', $this->controllerName);
+    }
+
 }
