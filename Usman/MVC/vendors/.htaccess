@@ -1,0 +1,4 @@
+Options -MutiViews
+RewriteEngine On
+
+RewriteBase /m_v_c/public/
