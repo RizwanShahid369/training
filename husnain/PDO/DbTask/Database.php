@@ -2,7 +2,7 @@
 require_once 'Criteria.php';
 
 /**
- * maintain singleton connection to the database and Provide methods to perform query's
+ * maintain singleton connection to the database and    Provide methods to perform query's
  *
  * Class Database
  */
