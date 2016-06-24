@@ -14,6 +14,7 @@ class DB
 {
     public $conn;
     public $sql;
+
     public function __construct()
     {
         $servername = "localhost";
@@ -102,7 +103,8 @@ class DB
 
         $key = array_shift($keys);
         $statement = $statement . "($key";
-        for ($i=0; $i<count($keys); $i++) {
+        $count = count($keys);
+        for ($i=0; $i<$count; $i++) {
             $key = array_shift($keys);
             $statement = $statement . ", $key";
         }
@@ -111,13 +113,14 @@ class DB
         $values = array_values($criteria->insertValues);
         $value = array_shift($values);
         $statement = $statement . "('$value'";
-        for ($i=0; $i<count($values); $i++) {
+        $count = count($values);
+        for ($i=0; $i<$count; $i++) {
             $value = array_shift($values);
             $statement = $statement . ", '$value'";
         }
         $statement = $statement . " )";
         $this->sql= $this->conn->prepare($statement);
-        //var_dump($this->sql);
+
         $this->execute();
 
     }
@@ -140,7 +143,7 @@ class DB
         $where = $criteria->getWhere();
         $statement = $statement . " WHERE $where ;";
         $this->sql= $this->conn->prepare($statement);
-        var_dump($this->sql);
+        //var_dump($this->sql);
         $this->execute();
 
     }
@@ -164,7 +167,7 @@ class DB
         $statement = "DELETE FROM $table where $where";
 
         $this->sql= $this->conn->prepare($statement);
-        //var_dump($this->sql);
+        var_dump($this->sql);
 
 
         $this->execute();

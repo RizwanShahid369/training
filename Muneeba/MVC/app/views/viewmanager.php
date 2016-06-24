@@ -5,6 +5,8 @@
  * Date: 6/21/16
  * Time: 12:53 AM
  */
+//namespace MVC;
+
 require_once ('/var/www/html/training/training/Muneeba/MVC/vendors/Smarty/setup.php');
 
 class ViewManager

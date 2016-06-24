@@ -6,6 +6,7 @@
  * Time: 2:37 AM
  */
 
+
 // load Smarty library
 require('libs/Smarty.class.php');
 
