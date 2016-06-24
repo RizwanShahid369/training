@@ -5,7 +5,7 @@
  * Date: 6/20/16
  * Time: 1:32 AM
  */
-namespace MVC;
+//namespace MVC;
 
 require_once ('../core/models/Model.php');
 

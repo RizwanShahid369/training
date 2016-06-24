@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-06-23 07:18:51
+/* Smarty version 3.1.28, created on 2016-06-24 06:48:54
   from "/var/www/html/training/training/Muneeba/MVC/app/views/customer/insert.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_576bc59b89c836_86821046',
+  'unifunc' => 'content_576d10161644a4_13663995',
   'file_dependency' => 
   array (
     '8d24d94affce268158ffb632f0882378b8ad8b2b' => 
     array (
       0 => '/var/www/html/training/training/Muneeba/MVC/app/views/customer/insert.tpl',
-      1 => 1466680719,
+      1 => 1466765144,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_576bc59b89c836_86821046 ($_smarty_tpl) {
+function content_576d10161644a4_13663995 ($_smarty_tpl) {
 ?>
 
 

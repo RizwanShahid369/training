@@ -5,7 +5,7 @@
  * Date: 6/20/16
  * Time: 1:35 AM
  */
-namespace MVC;
+
 
 
 require_once ('../core/models/database/DB.php');
@@ -27,12 +27,18 @@ class Model
     
     public function insert($insertArr)
     {
-        $criteria = new \DBclass\Criteria();
-        $criteria->setTableName(strtolower($this->modelName));
-        $criteria->insertValues = $insertArr;
+        //var_dump($insertArr);
+        if ($this->beforeInsert($insertArr) >= 0 ) {
+            //var_dump($insertArr);
+            $criteria = new \DBclass\Criteria();
+            $criteria->setTableName(strtolower($this->modelName));
+            $criteria->insertValues = $insertArr;
+            $this->db->insert($criteria);
+        } else {
 
+            echo "Cannot insert. Invalid Entry";
 
-        $this->db->insert($criteria);
+        }
     }
 
     public function delete()
@@ -59,7 +65,9 @@ class Model
 
         $this->db->selectAll($criteria);
         $this->db->execute();
-        return ($this->db->resultSet());
+        $result = $this->db->resultSet();
+        $this->afterSelectAll($result);
+        return $result;
 
     }
 
@@ -180,5 +188,28 @@ class Model
         } else {
             return -1;
         }
+    }
+
+    public function beforeInsert(&$param)
+    {
+        return 0;
+
+    }
+
+    public function afterInsert()
+    {
+        return 0;
+    }
+
+    public function beforeSelectAll()
+    {
+        return 0;
+
+    }
+
+    public function afterSelectAll(&$param)
+    {
+        return 0;
+
     }
 }

@@ -5,7 +5,7 @@
  * Date: 6/20/16
  * Time: 1:45 AM
  */
-namespace MVC;
+
 
 require_once ('../app/views/viewmanager.php');
 require_once ('../core/models/database/Criteria.php');
