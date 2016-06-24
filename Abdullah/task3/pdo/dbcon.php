@@ -72,8 +72,7 @@ class dbcon
 
     public function execute()
     {
-        echo $this->stmt->execute();
-     //   echo "dasas";
+        $this->stmt->execute();
 
     }
 
@@ -81,7 +80,7 @@ class dbcon
     {
         //$crit=new criteria();
         //global $string;
-        $this->sql = "select $field from $table where $id=:id and $city=:city'";
+        $this->sql = "select $field from $table where $id=:id and $city=:city" ;
         echo $this->sql;
         //       return true;
     }
@@ -179,8 +178,8 @@ $crit=new criteria();
 //$db->max("phonenumber","Student");
 //$db->max("phonenumber","Student");
 //$db->max("phonenumber","Student");
-//$db->insert("Student","id","course","phonenumber","city");
-$db->select("Student","phonenumber","id","city");
+$db->insert("Student","id","course","phonenumber","city");
+//$db->select("Student","phonenumber","id","city");
 //$db->update("Student","city","id" );
 //$db->delete("Student","id");
 //$db->deletegreater("Student","id");
@@ -188,10 +187,10 @@ $db->select("Student","phonenumber","id","city");
 $db->prepare();
 //$db->bindbetween(':val1',':val2','6','20');
 
-//$db->bindinsert(':id',':course',':phonenumber',':city',26,'math',3223,'faslabas');
+$db->bindinsert(':id',':course',':phonenumber',':city',26,'math',3223,'faslabas');
 
 
-$db->bindselect(':id',':city','10','laj');
+//$db->bindselect(':id',':city','10','laj');
 //$db->bindupdate(':id',':city','10','laj');
 //$db->binddelete(':id','9');
 $db->execute();
