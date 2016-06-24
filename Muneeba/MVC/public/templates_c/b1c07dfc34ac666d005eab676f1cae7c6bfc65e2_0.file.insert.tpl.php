@@ -1,4 +1,27 @@
-{* Smarty *}
+<?php
+/* Smarty version 3.1.28, created on 2016-06-24 03:13:39
+  from "/var/www/html/training/training/Muneeba/MVC/app/views/film/insert.tpl" */
+
+if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
+  'has_nocache_code' => false,
+  'version' => '3.1.28',
+  'unifunc' => 'content_576cdda3016279_74961317',
+  'file_dependency' => 
+  array (
+    'b1c07dfc34ac666d005eab676f1cae7c6bfc65e2' => 
+    array (
+      0 => '/var/www/html/training/training/Muneeba/MVC/app/views/film/insert.tpl',
+      1 => 1466752307,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_576cdda3016279_74961317 ($_smarty_tpl) {
+?>
+
 
 <a href="../film/view">back</a>
 <form action="../film/add" method="post">
@@ -21,3 +44,5 @@
     <input type="submit" name="insert" value="insert">
 </form>
 
+<?php }
+}

@@ -5,6 +5,7 @@
  * Date: 6/20/16
  * Time: 1:45 AM
  */
+namespace MVC;
 
 require_once ('../app/views/viewmanager.php');
 require_once ('../core/models/database/Criteria.php');
@@ -21,7 +22,7 @@ class Controller
 
     }
 
-    static public function login()
+    public static function login()
     {
         require_once ('../core/models/Model.php');
         if (isset($_POST['User'])) {
@@ -29,8 +30,7 @@ class Controller
             $user = ($_POST['User']);
             $email = $user['email'];
             $password = $user['password'];
-            if (isset($_POST['save']) && $_POST['save'] == 'value1')
-            {
+            if (isset($_POST['save']) && $_POST['save'] == 'value1') {
 
                 setcookie("email", $email, time() + (86400 * 30), "/");
                 setcookie('password', $password, time() + (86400 * 30), "/");
@@ -55,7 +55,7 @@ class Controller
 
     }
 
-    static public function signup()
+    public static function signup()
     {
         require_once ('../core/models/Model.php');
         
@@ -94,6 +94,7 @@ class Controller
     {
         $this->viewManager->render('insert', $this->controllerName);
     }
+
     public function edit($id = '')
     {
         $this->viewManager->addParams('id', $id);
@@ -105,6 +106,8 @@ class Controller
     {
         $arr = $_POST[$this->model->modelName];
         $this->model->insert($arr);
+        
+        $this->findAll();
     }
 
     public function remove()
@@ -129,10 +132,18 @@ class Controller
         
         $id = ($_POST[$this->model->columnNames[0]]);
 
+        $arr = [];
 
-        $this->model->update($insertArr, $this->model->columnNames[0], $id);
+        foreach ($insertArr as $key => $item) {
+            if (!($item == '')) {
+                $arr = [ $key => $item ];
+            }
 
-        $this->viewManager->render('view', $this->controllerName);
+        }
+
+        $this->model->update($arr, $this->model->columnNames[0], $id);
+
+        $this->findAll();
     }
 
     public function findOne()
@@ -144,6 +155,8 @@ class Controller
     {
         $this->model->deleteOne($this->model->columnNames[0], $id);
         $this->viewManager->render('view', $this->controllerName);
+
+        $this->findAll();
     }
 
     public function search()
@@ -155,5 +168,4 @@ class Controller
         $this->viewManager->addParams('arr', $result);
         $this->viewManager->render('view', $this->controllerName);
     }
-
 }

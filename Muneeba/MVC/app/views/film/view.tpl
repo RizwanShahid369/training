@@ -1,8 +1,8 @@
 {* Smarty *}
 
 <a href="film/insert">insert</a>
-<form action="index.php?page=search&action=search" method="post">
-    Search Full Name: <input type="text" name="sname"><br>
+<form action="film/search" method="post">
+    Search Full Name: <input type="text" name="Film[title]"><br>
     <input type="submit" name="search" value="search">
 </form>
 
@@ -23,6 +23,10 @@
             <td>{$arr[user].rating}</td>
             <td>{$arr[user].special_features}</td>
             <td>{$arr[user].last_update}</td>
+
+
+            <td><a href="film/edit/{$arr[user].film_id}" >Edit</a></td>
+            <td><a onclick="return confirm(\'are you sure?\')"  href="/film/removeOne/{$arr[user].film_id}" >Delete</a></td>
         </tr>
         {assign var='i' value=$i+1}
     {/section}

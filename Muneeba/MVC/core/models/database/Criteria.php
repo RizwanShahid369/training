@@ -203,13 +203,23 @@ class Criteria
 
     public function whereLTE($column, $value)
     {
-        $this->where = $this->where . " $column <= $value";
+        if(is_numeric($value)) {
+            //echo "here";
+            $this->where = $this->where . " $column <= $value";
+        } else {
+            $this->where = $this->where . " $column <= '$value'";
+        }
 
     }
 
     public function whereGTE($column, $value)
     {
-        $this->where = $this->where . " $column >= $value";
+        if(is_numeric($value)) {
+            //echo "here";
+            $this->where = $this->where . " $column >= $value";
+        } else {
+            $this->where = $this->where . " $column >= '$value'";
+        }
 
     }
 
@@ -238,7 +248,7 @@ class Criteria
     public function whereEquals($column, $value)
     {
         if(is_numeric($value)) {
-            echo "here";
+            //echo "here";
             $this->where = $this->where . " $column = $value";
         } else {
             $this->where = $this->where . " $column = '$value'";

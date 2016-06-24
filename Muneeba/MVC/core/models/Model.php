@@ -5,6 +5,9 @@
  * Date: 6/20/16
  * Time: 1:35 AM
  */
+namespace MVC;
+
+
 require_once ('../core/models/database/DB.php');
 
 
@@ -14,6 +17,7 @@ class Model
     public $columnNames;
     public $attributeNames;
     public $db;
+    public $join;
 
     public function __construct()
     {
@@ -24,14 +28,17 @@ class Model
     public function insert($insertArr)
     {
         $criteria = new \DBclass\Criteria();
-        $criteria->setTableName(strtolower($this->model->modelName));
+        $criteria->setTableName(strtolower($this->modelName));
         $criteria->insertValues = $insertArr;
+
 
         $this->db->insert($criteria);
     }
 
-    public function delete($criteria)
+    public function delete()
     {
+        $criteria = new \DBclass\Criteria();
+        $criteria->setTableName(strtolower($this->modelName));
         $this->db->delete($criteria);
     }
 
@@ -39,10 +46,9 @@ class Model
     {
         $criteria = new \DBclass\Criteria();
         $criteria->setTableName(strtolower($this->modelName));
-
         $criteria->insertValues = $insertArr;
         $criteria->whereEquals($col, $id);
-
+        // var_dump($criteria);
         $this->db->update($criteria);
     }
 
@@ -70,8 +76,12 @@ class Model
         return ($this->db->resultSet());
     }
 
-    public function deleteOne($criteria)
+    public function deleteOne($col, $id)
     {
+        $criteria = new \DBclass\Criteria();
+        $criteria->setTableName(strtolower($this->modelName));
+        $criteria->whereEquals($col, $id);
+
         $this->db->deleteOne($criteria);
     }
 
@@ -88,7 +98,7 @@ class Model
         return ($this->db->resultSet());
     }
 
-    static public function logIn($email, $password)
+    public static function logIn($email, $password)
     {
         $db =  new \DBclass\DB();
 
@@ -104,7 +114,7 @@ class Model
         $db->select($criteria);
         $db->execute();
         ( $result =  ($db->resultSet()) );
-        if(empty($result)) {
+        if (empty($result)) {
             echo "Invalid email";
         } else {
             $password_crypt = ($result[0]['password']);
@@ -124,8 +134,7 @@ class Model
 
 
                 var_dump($select);
-                if(!empty($select))
-                {
+                if (!empty($select)) {
 
                     return $select[0]['user_id'];
                 }
@@ -138,7 +147,7 @@ class Model
     }
 
 
-    static public function signUp($email, $password)
+    public static function signUp($email, $password)
     {
         $db =  new \DBclass\DB();
 
@@ -166,10 +175,10 @@ class Model
         $select = $db->resultSet();
 
 
-        if(!empty($select))
-        {
+        if (!empty($select)) {
             return $select[0]['user_id'];
+        } else {
+            return -1;
         }
     }
-
 }

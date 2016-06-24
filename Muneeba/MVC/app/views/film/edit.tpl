@@ -1,8 +1,6 @@
-{* Smarty *}
-
-<a href="../film/view">back</a>
-<form action="../film/add" method="post">
-
+<a href="index.php">back</a>
+<form action="../update" method="post">
+    <input type="hidden" name="film_id" value="{$id}">
     Title: <input type="text" name="Film[title]"><br>
     Description: <input type="text" name="Film[description]"><br>
 
@@ -18,6 +16,5 @@
     Rating: <input type="text" name="Film[rating]"><br>
     Special Features: <input type="text" name="Film[special_features]"><br>
 
-    <input type="submit" name="insert" value="insert">
+    <input type="submit" name="update" value="update">
 </form>
-

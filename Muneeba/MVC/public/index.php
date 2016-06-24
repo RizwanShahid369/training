@@ -13,4 +13,3 @@ require('../app/init.php');
 ob_start();
 
     $app = new App;
-

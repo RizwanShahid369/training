@@ -5,6 +5,7 @@
  * Date: 6/20/16
  * Time: 1:32 AM
  */
+namespace MVC;
 
 require_once ('../core/models/Model.php');
 
@@ -20,7 +21,7 @@ class CustomerModel extends Model
     public $create_date;
     public $last_update;
 
-    
+
     
     public function __construct()
     {
