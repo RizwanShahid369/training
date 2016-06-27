@@ -13,9 +13,9 @@
 
 $smtemplate_config =
     array(
-        'layouts_dir' => 'layouts/',
-        'template_dir' => 'views/',
-        'compile_dir' => 'templates_c/',
-        'cache_dir' => 'cache/',
-        'configs_dir' => 'configs/',
+        'layouts_dir' => 'var/www/html/mvc4/vendors/smarty/cache/layouts/',
+        'template_dir' => 'var/www/html/mvc4/vendors/smarty/cache/views/',
+        'compile_dir' => 'var/www/html/mvc4/vendors/smarty/cache/templates_c/',
+        'cache_dir' => 'var/www/html/mvc4/vendors/smarty/cache/cache/',
+        'configs_dir' => 'var/www/html/mvc4/vendors/smarty/cache/configs/',
     );

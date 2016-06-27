@@ -1,5 +1,3 @@
-<B>LOGIN FORM</B>
-
 <form action="?url=login/check" method="post">
 
     <p>
@@ -27,6 +25,3 @@
     <input type="checkbox" name="vehicle" value="Bike"> Set COOKIE<br>
 
 </form>
-
-
-

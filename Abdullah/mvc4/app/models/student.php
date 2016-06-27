@@ -11,7 +11,7 @@ class student// extends basemodel
 
     public function selectall()
     {
-        echo "fff";
+        echo "FF $$";
         //$obj = new crieteria();
        // $obj->buildWhereEqual();
         $obDB = new dbcon();
@@ -19,7 +19,8 @@ class student// extends basemodel
         $obDB->Prepare();
         //$obDB->bind(":id", 14, ":class", 77);
         $obDB->Execute();
-        $obDB->result();
+        $res = $obDB->result();
+        return $res;
     }
     public function selectone()
     {
@@ -53,9 +54,8 @@ class student// extends basemodel
         $db = new dbcon();
         $db->delete("Student","id");
         $db->Prepare();
-        $db->binddelete(':id','6');
+        $db->binddelete(':id',$_POST['del']);
         $db->Execute();
         echo "Succesfully deleted";
     }
-
 }
