@@ -6,5 +6,5 @@
  * Time: 2:16 AM
  */
 
-require_once ('../core/App.php');
+
 

@@ -8,6 +8,7 @@
 
 
 require_once ('../app/views/viewmanager.php');
+require_once ('Routing.php');
 require_once ('../core/models/database/Criteria.php');
 
 class Controller
@@ -15,15 +16,19 @@ class Controller
     public $controllerName;
     public $model;
     public $viewManager;
+    public $routing;
     
     public function __construct()
     {
+        $this->routing = new Routing();
         $this->viewManager = new ViewManager();
 
     }
 
     public static function login()
     {
+        echo "Logging In";
+
         require_once ('../core/models/Model.php');
         if (isset($_POST['User'])) {
 
@@ -32,21 +37,22 @@ class Controller
             $password = $user['password'];
             if (isset($_POST['save']) && $_POST['save'] == 'value1') {
 
-                setcookie("email", $email, time() + (86400 * 30), "/");
-                setcookie('password', $password, time() + (86400 * 30), "/");
+                //setcookie("email", $email, time() + (86400 * 30), "/");
+                //setcookie('password', $password, time() + (86400 * 30), "/");
 
                 ob_end_flush();
+
             }
-            
-            
             $result = Model::logIn($email, $password);
-            if (($result)<0) {
+            var_dump($result);
+            if (($result) < 0) {
                 echo "Email or Password is incorrect";
                 return false;
             } else {
+                echo "HERE I AM";
                 var_dump($result);
                 $_SESSION['loggedin'] = $result;
-                //echo $_SESSION['loggedin'];
+                echo $_SESSION['loggedin'];
             }
 
             
@@ -55,34 +61,7 @@ class Controller
 
     }
 
-    public static function signup()
-    {
-        require_once ('../core/models/Model.php');
-        
-
-        if (isset($_POST['User'])) {
-            $user = ($_POST['User']);
-            $email = $user['email'];
-
-            $password = md5($user['password']);
-
-            $result = Model::logIn($email, $password);
-
-            if (($result)) {
-                echo "Email already exists.";
-            } else {
-                $id = Model::signUp($email, $password);
-                $viewManager = new ViewManager();
-
-                $viewManager->addParams('user_id', $id);
-                $viewManager->render('view', 'actor');
-
-            }
-        }
-
-    }
-
-    public function setModel($model)
+    protected function setModel($model)
     {
         require_once ("../app/models/". strtolower($model) . 'Model.php');
         $model = $model . 'Model';
@@ -101,7 +80,6 @@ class Controller
         $this->viewManager->render('edit', $this->controllerName);
     }
 
-    
     public function add()
     {
         $arr = $_POST[$this->model->modelName];
@@ -167,5 +145,27 @@ class Controller
         $result = $this->model->find($param);
         $this->viewManager->addParams('arr', $result);
         $this->viewManager->render('view', $this->controllerName);
+    }
+
+    public function doAction($method)
+    {
+        echo "Doing some action";
+        $flag = $this->routing->checkMethod($method);
+
+        if($flag > 0) {
+            $this->$method();
+        } elseif ($flag == 0) {
+            if (isset($_COOKIE['email']) && isset($_COOKIE['password'])) {
+                $this->viewManager->addParams('email', $_COOKIE['email']);
+                $this->viewManager->addParams('password', $_COOKIE['password']);
+            } else {
+                $this->viewManager->addParams('email', '');
+                $this->viewManager->addParams('password', '');
+            }
+            $this->viewManager->render('login', $this->controllerName);
+            Controller::login();
+        } else {
+            $this->viewManager->render('../layouts/error', $this->controllerName);
+        }
     }
 }

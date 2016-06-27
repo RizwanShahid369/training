@@ -122,11 +122,13 @@ class Model
         $db->select($criteria);
         $db->execute();
         ( $result =  ($db->resultSet()) );
+        //var_dump($result);
+        //echo "LOGIN";
         if (empty($result)) {
-            echo "Invalid email";
+           //echo "Invalid email";
         } else {
             $password_crypt = ($result[0]['password']);
-            $inpassword = md5($password);
+            echo $inpassword = md5($password);
 
             if ($inpassword == $password_crypt) {
                 $criteria = new \DBclass\Criteria();
@@ -136,59 +138,26 @@ class Model
                 $criteria->whereAND();
                 $criteria->whereEquals('password', $inpassword);
 
+                //var_dump($criteria);
+
                 $db->select($criteria);
                 $db->execute();
                 $select = $db->resultSet();
 
 
-                var_dump($select);
-                if (!empty($select)) {
-
+                //var_dump($select);
+                if (!(empty($select))) {
+                    //echo "I am user";
                     return $select[0]['user_id'];
                 }
             } else {
-                echo 'Invalid password.';
+               echo 'User already exists';
             }
         }
         return -1;
 
     }
 
-
-    public static function signUp($email, $password)
-    {
-        $db =  new \DBclass\DB();
-
-        $criteria = new \DBclass\Criteria();
-        $criteria->setTableName('user');
-
-        $arr = [ 'email' => $email,
-            'password' => $password
-        ];
-        //var_dump($arr);
-        $criteria->insertValues = $arr;
-        //var_dump($criteria);
-
-        //var_dump($criteria);
-        $db->insert($criteria);
-
-        $criteria = new \DBclass\Criteria();
-        $criteria->setTableName('user');
-        $criteria->setSelect('user_id');
-        $criteria->whereEquals('email', $email);
-        $criteria->whereAND();
-        $criteria->whereEquals('password', $password);
-        $db->select($criteria);
-        $db->execute();
-        $select = $db->resultSet();
-
-
-        if (!empty($select)) {
-            return $select[0]['user_id'];
-        } else {
-            return -1;
-        }
-    }
 
     public function beforeInsert(&$param)
     {

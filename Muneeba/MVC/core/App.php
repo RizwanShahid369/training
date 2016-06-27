@@ -7,28 +7,37 @@
  */
 
 require_once ('../app/views/viewmanager.php');
+require_once ('Request.php');
 
 class App
 {
-    protected $controller = 'actor';
-    protected $method = 'findAll';
-
-    protected $params = [];
-
+    public $request;
     public function __construct()
     {
-        session_start();
+        $this->request = new Request();
+
+        //var_dump($this->request);
+
+        $controller = $this->request->getController();
+        $method = $this->request->getMethod();
+
+        $controller->doAction($method);
+
+        /*session_start();
         $url = $this->parseURL();
         //echo $_SESSION['loggedin'];
         //
+
         if ($url[0] == 'logout') {
             unset($_SESSION);
         }
-        if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
+        if ((isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)) {
             echo "Welcome to the member's area" . "!";
 
             if (file_exists('../app/controllers/' . $url[0] . 'Controller.php')) {
+
                 $this->controller = $url[0];
+
                 unset($url[0]);
             }
             require_once('../app/controllers/' . $this->controller . 'Controller.php');
@@ -58,18 +67,9 @@ class App
 
             $this->method = $url[0];
             require_once('../core/controllers/Controller.php');
-
-
-            if ($url[0] == 'Signup' || $url[0] == 'signUp') {
-
-                $viewManager->render('signup', '');
-                var_dump($url[0]);
-                call_user_func_array(Controller::signup(), $this->params);
-
-            } else {
                 call_user_func_array(Controller::login(), $this->params);
                 $viewManager->render('login', '');
-            }
+            
         }
     }
 
@@ -78,5 +78,6 @@ class App
         if(isset($_GET['url'])) {
             return explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
         }
+    }*/
     }
 }
