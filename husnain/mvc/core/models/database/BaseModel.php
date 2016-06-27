@@ -10,18 +10,31 @@ require_once 'ModelInterface.php';
 require_once 'drivers/Database.php';
 require_once 'drivers/Criteria.php';
 
+/**
+ * Class BaseModel
+ *
+ * provides methods to manipulate data
+ *
+ */
 class BaseModel implements ModelInterface
 {
     // protected $controller;
     //protected $method;
     protected $db_instance;
 
+    /**
+     * BaseModel constructor.
+     */
     public function __construct()
     {
         echo "hello base model<br>";
         $this->db_instance = Database::getInstance();
     }
 
+    /**
+     * @param $data
+     * insert data in the database
+     */
     public function insert($data)
     {
         if (!empty($data)) {
@@ -43,6 +56,11 @@ class BaseModel implements ModelInterface
 
     }
 
+    /**
+     * @param $arr
+     *
+     * update record in the table
+     */
     public function update($arr)
     {
         echo "base model Update";
@@ -58,6 +76,12 @@ class BaseModel implements ModelInterface
 
     }
 
+    /**
+     * @param $id
+     *
+     * deletes a particular record from the database
+     *
+     */
     public function delete($id)
     {
         $this->db_instance->deleteByPk('student', $id);
@@ -68,6 +92,11 @@ class BaseModel implements ModelInterface
 
     }
 
+    /**
+     * @return mixed
+     *
+     * return all records from the table
+     */
     public function selectAll()
     {
         // $db_instance = Database::getInstance();
@@ -90,6 +119,14 @@ class BaseModel implements ModelInterface
         echo "<br>in the Select method of Db baseModel";
     }
 
+    /**
+     * @param $tablename
+     * @param $criteria
+     * @return mixed
+     *
+     * return all records based on particular criteria
+     *
+     */
     public function select($tablename, $criteria)
     {
         $this->db_instance->select($tablename, $criteria);
@@ -100,6 +137,13 @@ class BaseModel implements ModelInterface
         return $res;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     *
+     * select a single record based on the primary key
+     *
+     */
     public function selectBypk($id)
     {
         $this->db_instance->selectByPK('student', $id);

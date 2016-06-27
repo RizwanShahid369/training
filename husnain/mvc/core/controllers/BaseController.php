@@ -10,8 +10,11 @@ require_once '../core/controllers/ControllerInterface.php';
 require_once '../core/models/database/ModelFactory.php';
 require_once '../core/views/viewManager.php';
 
-//require_once '../core/views/viewManager.php';
-
+/**
+ * Class BaseController
+ *
+ * provide methods 
+ */
 
 class BaseController implements ControllerInterface
 {
@@ -45,6 +48,10 @@ class BaseController implements ControllerInterface
 //        var_dump($this->model_factory);
     }
 
+    /**
+     * this method add record to the database
+     *
+     */
     public function add()
     {
         echo "in the add method base ";
@@ -64,6 +71,10 @@ class BaseController implements ControllerInterface
 //        $this->model_factory->
     }
 
+    /**
+     * deletes records from the database
+     *
+     */
     public function delete()
     {
         echo "in the delete";
@@ -71,27 +82,26 @@ class BaseController implements ControllerInterface
         $this->model->delete($id);
     }
 
+    /**
+     * list all records from the table
+     *
+     */
     public function listt()
     {
         session_start();
-        //remember to comment it
-        //$this->model_factory = new Student();
         if ($_SESSION['name']) {
             $res = $this->model->selectAll();
-//        print_r($res); die();
-
             $this->view_manager->addParams('stdarr', $res);
-
             $this->view_manager->render('listt', $this->controller_name);
         } else {
             echo "Please login first";
-
-//            echo "<a href = 'index.php'> go to home page</a>";
         }
-
-
     }
 
+    /**
+     * edit particular record from the database
+     *
+     */
     public function edit()
     {
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -111,4 +121,3 @@ class BaseController implements ControllerInterface
 
     }
 }
-//$ob = new BaseController();

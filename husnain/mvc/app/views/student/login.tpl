@@ -1,5 +1,5 @@
 
-<h4>this is login pahe</h4>
+<h4>this is login page</h4>
 
 <form method="POST">
     Username:<br>

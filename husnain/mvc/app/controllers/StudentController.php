@@ -6,30 +6,20 @@
  * Date: 6/20/16
  * Time: 2:49 AM
  */
-//require_once '../models/Student.php';
 require_once '../core/controllers/BaseController.php';
-//include_once '../../core/controllers/BaseController.php';
-$filename = '../core/controllers/BaseController.php';
 
-
-/*try {
-    if (!file_exists($filename)) {
-        throw new Exception(" file was not found");
-    }
-} catch(Exception $e) {
-    echo $e->getMessage();
-}
-die("end!");*/
-/*if (file_exists($filename)) {
-    echo 'congrats it exists!';
-} else {
-    throw new Exception();
-}*/
+/**
+ * Class StudentController
+ *
+ */
 
 class StudentController extends BaseController
 {
 
     private $stdModel;
+    private $username;
+    private $password;
+
 
     public function __construct()
     {
@@ -41,30 +31,40 @@ class StudentController extends BaseController
 
     public function index()
     {
+
         session_start();
         if($_SERVER['REQUEST_METHOD'] == 'GET') {
-            if ($_SESSION['name']) {
-                $this->view_manager->render('welcome', $this->controller_name);
-            } else {
-                $this->view_manager->render('login',$this->controller_name);
-            }
+
+                if (isset($_COOKIE['hello'])) {
+                    session_start();
+                    $_SESSION['name'] = 'hello';
+                    $this->view_manager->render('welcome', $this->controller_name);
+                } else {
+                    if ($_SESSION['name']) {
+                        $this->view_manager->render('welcome', $this->controller_name);
+                    } else {
+                        $this->view_manager->render('login',$this->controller_name);
+                    }
+                }
+
 
         } else {
             echo 'get POSTED Values and do';
-            $username = $_POST['username'];
-            $password = $_POST['password'];
+            $this->username = $_POST['username'];
+            $this->password = $_POST['password'];
             $checkbox = $_POST['remember'];
-            $this->stdModel->setUsername($username);
-            $this->stdModel->setPassword($password);
+            $this->stdModel->setUsername($this->username);
+            $this->stdModel->setPassword($this->password);
+
             $res = $this->stdModel->select('users',['user_name' =>  $this->stdModel->getUsername(),
             'password' =>  $this->stdModel->getPassword()]);
             if ($res == true) {
 //                session_start();
 
-                $_SESSION['name']= $username;
+                $_SESSION['name']= $this->username;
                 //print_r($_SESSION);
                 if (isset($checkbox)) {
-                    setcookie('name', 'hello', time() + (86400 * 30), "/");
+                    setcookie($this->username, $this->password, time() + (86400 * 30), "/");
                 }
                 $this->view_manager->render('welcome', $this->controller_name);
             } else {
@@ -84,8 +84,11 @@ class StudentController extends BaseController
         session_start();
         session_unset();
         session_destroy();
-        if( isset($_COOKIE['name'])) {
-            setcookie("name", "hello", time() - 86400 * 30);
+
+        if (isset($_COOKIE['hello'])) {
+            unset($_COOKIE['hello']);
+            setcookie('hello', null, time() - (86400 * 30), '/');
+            echo "Cookie deleted! ";
         }
 
             $this->view_manager->render('login',$this->controller_name);
