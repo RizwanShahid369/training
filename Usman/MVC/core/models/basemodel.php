@@ -16,12 +16,9 @@ class basemodel
 
     public function select()
     {
-        $obj = new crieteria();
-        $obj->buildWhereEqual();
         $obDB = new database();
-        $obDB->select("students","*", $obj);
+        $obDB->selectAll("students","*");
         $obDB->Prepare();
-        $obDB->bind(":id", 33, ":class", 4);
         $obDB->Execute();
         $res = $obDB->resultSet();
 

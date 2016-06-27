@@ -87,7 +87,7 @@ class database
     public function resultSet()
     {
         $this->stmt->setFetchMode(\PDO::FETCH_ASSOC);
-//        $res = $this->stmt->fetch();
+     // $res = $this->stmt->fetch();
         while($res = $this->stmt->fetch())
         {
             $arrRes= $res;

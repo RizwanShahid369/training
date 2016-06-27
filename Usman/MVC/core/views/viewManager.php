@@ -20,7 +20,6 @@ class ViewManager
     
     public function addParams($key, $value)
     {
-        echo "Sma";
         $this->smarty->addParams($key , $value);
     }
 
