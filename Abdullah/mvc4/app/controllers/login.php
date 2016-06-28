@@ -5,6 +5,8 @@
  * Date: 6/23/16
  * Time: 5:20 AM
  */
+
+ini_set('display_errors', 1);
 require_once('/var/www/html/mvc4/core/controllers/baseController.php');
 
 class login extends baseController
@@ -12,20 +14,35 @@ class login extends baseController
     public function __construct()
     {
         parent::__construct();
-//        echo "abab";
-
+         echo "abab";
+         
     }
 
 
 
-    public function login()
-    {
+    public function login($p)
+    {   echo $p;
         //$user = $this->model($p);
-        //$abd=$user->displaySmarty1();
-        $this->displaySmarty1();
+        //$abd=$user->selectall();
+        if(!isset($_COOKIE["name"])) {
+            $this->displaySmarty1();
+        }
+        else {
+            $this->welcome();
+        }
     }
 
+    public function check1()
+{
 
+
+    $user = $this->model('modellogin');
+    echo "hello";
+    //var_dump($user);
+    $abd=$user->selectall();
+    echo $abd;
+    $this->displaySmarty($abd);
+}
 
 
     
@@ -58,11 +75,15 @@ class login extends baseController
             if(isset($c))
             {
                 setcookie("name", $_SESSION['username'], time()+3600, "/","", 0);
-               echo $_COOKIE["name"];
+               echo "Cookie is set",$_COOKIE["name"];
 
 
                // $_SESSION['user_id']=$_COOKIE['user_id'];
             }
+         elseif(isset($COOKIE["name"]))
+         {
+             $this->welcome();
+         }
 
          else{
 

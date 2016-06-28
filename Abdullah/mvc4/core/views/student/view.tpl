@@ -7,7 +7,7 @@
         <th>phonenumber</th>
         <th>city</th>
     </tr>
-    {foreach from=$arr key=k item=i}
+    {foreach from=$arr as $i}
         <tr>
             <td>{$i.id}</td>
             <td>{$i.Course}</td>

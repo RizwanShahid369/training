@@ -1,7 +1,7 @@
 <?php
 
 
-//ini_set('display_errors', 1);
+ini_set('display_errors', 1);
 require_once('/var/www/html/mvc4/core/controllers/baseController.php');
 
 class studentController extends baseController
@@ -9,7 +9,7 @@ class studentController extends baseController
     public function __construct()
     {
         parent::__construct();
-        echo "Controller";
+        echo "MainController";
     }
 
 
@@ -21,6 +21,7 @@ class studentController extends baseController
     {
         $user = $this->model($p);
         $abd=$user->selectall();
+
         $this->displaySmarty($abd);
     }
     public function selectone($p)
@@ -40,7 +41,7 @@ class studentController extends baseController
     public function delete($p)
     {
         $user = $this->model($p);
-        $user->delete();
+        $user->delete($_POST['del']);
         $this->displaySmarty();
         echo "Succesfully deleted";
     }

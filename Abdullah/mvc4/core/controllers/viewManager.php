@@ -10,15 +10,17 @@ class ViewManager
         $this->smarty = new setup();
 
     }
-    public function addParams($key, $value)
+    public function addParams1($key, $value)
     {
-        $this->smarty->addParams($key , $value);
+        //echo "EEE ", $key, "  ", $value;
+
+        $this->smarty->addParams($key, $value);
+        echo "KK ";//print_r($value);
     }
 
-    public function render($view, $controller)
+    public function render1($view, $controller)
     {
         $this->smarty->render($view, $controller);
-
+        echo "disp";
     }
-
 }

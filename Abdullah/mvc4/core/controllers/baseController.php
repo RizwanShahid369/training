@@ -1,6 +1,7 @@
 <?php
 
 include ('viewManager.php');
+
 class baseController
 {
     public $controller;
@@ -10,31 +11,36 @@ class baseController
     public function __construct()
     {
         $this->viewManager = new ViewManager();
+        echo "Base controller";
     }
 
     public function model($model)
     {
-        require_once ("../app/models/". $model . '.php');
+        //echo "adsas", $model;
+        include ("../app/models/" . $model . '.php');
+        //echo "After  ", $model;
         $this->controller = $model;
         $this->model = new $model;
+        //echo "nect";
+//        var_dump($this->model);
         return $this->model;
     }
+        public function displaySmarty($abd)
+    {
 
-    public function displaySmarty($abd)
-{
-    $this->viewManager->addParams('arr', $abd);
-    include '../../app/views/student/view.tpl';
-    //$this->viewManager->render('view', $this->controller);
+        include ('../app/views/student/view.tpl');
+        $this->viewManager->addParams1('arr', $abd);
+        $this->viewManager->render1('view', $this->controller);
 }
     public function displaySmarty1($abd)
     {
-       // $this->viewManager->addParams('arr', $abd);
+        $this->viewManager->addParams('arr', $abd);
         include '../app/views/student/login.tpl';
-        //$this->viewManager->render('view', $this->controller);
+        $this->viewManager->render('view', $this->controller);
     }
     public function welcome($abd)
     {
-        // $this->viewManager->addParams('arr', $abd);
+         $this->viewManager->addParams('arr', $abd);
         include '../app/views/student/welcome.tpl';
         $this->viewManager->render('view', $this->controller);
     }

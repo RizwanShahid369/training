@@ -230,11 +230,11 @@ $db->bindselectone('username','password','abd',123);
 
 //$db->bindselect(':id',':city','10','laj');
 //$db->bindupdate(':id',':city','10','laj');
-//$db->binddelete(':id','9');
+//$db->binddelete(':id','11');
 $db->execute();
-$db->resultset2();
+//$db->resultset2();
 
 
 //echo "asds";
-//$db->resultset1();
+$db->resultset1();
 

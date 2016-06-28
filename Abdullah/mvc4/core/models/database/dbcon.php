@@ -113,14 +113,16 @@ class dbcon
 
     public function result()
     {
+        $this->stmt->setFetchMode(\PDO::FETCH_ASSOC);
        // echo "There";
         while ($user = $this->stmt->fetch()) {
-            echo $user['phonenumber'] . "\n";
-            echo $user['Id'] . "\n";
-            echo $user['Course'] . "\n";
-            echo $user['city'] . "\n";
+            //echo $user['phonenumber'] . "\n";
+            //echo $user['Id'] . "\n";
+            //echo $user['Course'] . "\n";
+            //echo $user['city'] . "\n";
+            $arr = $user;
         }
-
+        return $arr;
     }
     public function resultset1()
     {
@@ -191,7 +193,6 @@ class dbcon
         $this->stmt->bindParam($name1, $name3);
         $this->stmt->bindParam($name2, $name4);
 
-
     }
 
 
@@ -202,7 +203,7 @@ class dbcon
 
 
 
-$db=new dbcon();
+//$db=new dbcon();
 //$crit=new criteria();
 //$crit->wherebetween("id");
 //$db->between("Student","phonenumber",$crit);
@@ -211,7 +212,7 @@ $db=new dbcon();
 
 //$db->between("Student","id","id");
 
-$db->selectone("login","username","password");
+//$db->selectone("login","username","password");
 
 //$db->max("phonenumber","Student");
 //$db->max("phonenumber","Student");
@@ -222,17 +223,17 @@ $db->selectone("login","username","password");
 //$db->delete("Student","id");
 //$db->deletegreater("Student","id");
 
-$db->prepare();
+//$db->prepare();
 //$db->bindbetween(':val1',':val2','6','20');
-$db->bindselectone('username','password','abd',123);
+//$db->bindselectone('username','password','abd',123);
 //$db->bindinsert(':id',':course',':phonenumber',':city',26,'math',3223,'faslabas');
 
 
 //$db->bindselect(':id',':city','10','laj');
 //$db->bindupdate(':id',':city','10','laj');
 //$db->binddelete(':id','9');
-$db->execute();
-$db->resultset2();
+//$db->execute();
+//$db->resultset2();
 
 
 //echo "asds";
