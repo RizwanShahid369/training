@@ -25,41 +25,7 @@ class Controller
 
     }
 
-    public static function login()
-    {
-        echo "Logging In";
 
-        require_once ('../core/models/Model.php');
-        if (isset($_POST['User'])) {
-
-            $user = ($_POST['User']);
-            $email = $user['email'];
-            $password = $user['password'];
-            if (isset($_POST['save']) && $_POST['save'] == 'value1') {
-
-                //setcookie("email", $email, time() + (86400 * 30), "/");
-                //setcookie('password', $password, time() + (86400 * 30), "/");
-
-                ob_end_flush();
-
-            }
-            $result = Model::logIn($email, $password);
-            var_dump($result);
-            if (($result) < 0) {
-                echo "Email or Password is incorrect";
-                return false;
-            } else {
-                echo "HERE I AM";
-                var_dump($result);
-                $_SESSION['loggedin'] = $result;
-                echo $_SESSION['loggedin'];
-            }
-
-            
-        }
-
-
-    }
 
     protected function setModel($model)
     {
@@ -140,16 +106,18 @@ class Controller
     public function search()
     {
 
-        $param = $_POST[$this->model->modelName];
+        if (isset($_POST[$this->model->modelName])) {
+            $param = $_POST[$this->model->modelName];
 
-        $result = $this->model->find($param);
-        $this->viewManager->addParams('arr', $result);
-        $this->viewManager->render('view', $this->controllerName);
+            $result = $this->model->find($param);
+            $this->viewManager->addParams('arr', $result);
+            $this->viewManager->render('view', $this->controllerName);
+        }
     }
 
     public function doAction($method)
     {
-        echo "Doing some action";
+        //echo "Doing some action";
         $flag = $this->routing->checkMethod($method);
 
         if($flag > 0) {
@@ -162,8 +130,8 @@ class Controller
                 $this->viewManager->addParams('email', '');
                 $this->viewManager->addParams('password', '');
             }
-            $this->viewManager->render('login', $this->controllerName);
-            Controller::login();
+            $this->viewManager->render('login', 'userController');
+
         } else {
             $this->viewManager->render('../layouts/error', $this->controllerName);
         }

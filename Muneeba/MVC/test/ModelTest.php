@@ -10,7 +10,7 @@
 
 use PHPUnit_Framework_TestCase;
 
-require 'Model.php';
+require '../core/models/Model.php';
 
 class ModelTest extends PHPUnit_Framework_TestCase
 {

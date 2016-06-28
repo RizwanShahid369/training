@@ -19,6 +19,42 @@ class UserController extends Controller
         $this->controllerName = 'user';
     }
 
+    public function login()
+    {
+        //echo "Logging In";
+
+        require_once ('../core/models/Model.php');
+        if (isset($_POST['User'])) {
+
+            $user = ($_POST['User']);
+            $email = $user['email'];
+            $password = $user['password'];
+            if (isset($_POST['save']) && $_POST['save'] == 'value1') {
+
+                //setcookie("email", $email, time() + (86400 * 30), "/");
+                //setcookie('password', $password, time() + (86400 * 30), "/");
+
+                ob_end_flush();
+
+            }
+            $result = Model::logIn($email, $password);
+            var_dump($result);
+            if (($result) < 0) {
+                echo "Email or Password is incorrect";
+                return false;
+            } else {
+                //echo "HERE I AM";
+                //var_dump($result);
+                $_SESSION['loggedin'] = $result;
+                echo $_SESSION['loggedin'];
+            }
+
+
+        }
+
+
+    }
+
     public function newUser()
     {
         //echo "here";

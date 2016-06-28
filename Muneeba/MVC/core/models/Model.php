@@ -106,59 +106,6 @@ class Model
         return ($this->db->resultSet());
     }
 
-    public static function logIn($email, $password)
-    {
-        $db =  new \DBclass\DB();
-
-
-        $criteria = new \DBclass\Criteria();
-        $criteria->setTableName('user');
-        $criteria->setSelect('password');
-        $criteria->whereEquals('email', $email);
-
-        //$criteria->whereEquals('password', $password);
-        //var_dump($criteria);
-        
-        $db->select($criteria);
-        $db->execute();
-        ( $result =  ($db->resultSet()) );
-        //var_dump($result);
-        //echo "LOGIN";
-        if (empty($result)) {
-           //echo "Invalid email";
-        } else {
-            $password_crypt = ($result[0]['password']);
-            echo $inpassword = md5($password);
-
-            if ($inpassword == $password_crypt) {
-                $criteria = new \DBclass\Criteria();
-                $criteria->setTableName('user');
-                $criteria->setSelect('user_id');
-                $criteria->whereEquals('email', $email);
-                $criteria->whereAND();
-                $criteria->whereEquals('password', $inpassword);
-
-                //var_dump($criteria);
-
-                $db->select($criteria);
-                $db->execute();
-                $select = $db->resultSet();
-
-
-                //var_dump($select);
-                if (!(empty($select))) {
-                    //echo "I am user";
-                    return $select[0]['user_id'];
-                }
-            } else {
-               echo 'User already exists';
-            }
-        }
-        return -1;
-
-    }
-
-
     public function beforeInsert(&$param)
     {
         return 0;

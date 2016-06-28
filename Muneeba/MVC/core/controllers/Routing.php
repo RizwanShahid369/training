@@ -42,15 +42,16 @@ class Routing
 
     public function checkMethod($method)
     {
-        if ((isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)) {
             if (in_array($method, $this->authenticated)) {
-                return 1;
+                if ((isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)) {
+                    return 1; //execute the method if logged in
+                } else {
+                    return 0; //go to login page
+                }
             } elseif (in_array($method, $this->unAuthenticated)) {
-                return 0;
+                    return 1; //execute the method
             } else {
-                return -1;
+                return -1; //go to error page
             }
-        }
     }
-
 }
