@@ -18,5 +18,17 @@ class ActorController extends Controller
         parent::__construct();
         $this->model = $this->setModel('Actor');
         $this->controllerName = 'actor';
+        $array = [
+            'insert',
+            'delete',
+            'edit',
+            'add',
+            'update',
+            'findAll',
+            'findOne',
+            'search',
+            'removeOne'
+        ];
+        $this->routing->addAuthenticated($array);
     }
 }

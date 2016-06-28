@@ -4,5 +4,5 @@
     Email: <input type="text" name="User[email]"><br>
     Password: <input type="text" name="User[password]"><br>
 
-    <input type="submit" name="signup" value="signup">
+    <input type="submit" name="signUp" value="signUp">
 </form>

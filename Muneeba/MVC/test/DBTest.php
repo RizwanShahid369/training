@@ -9,7 +9,7 @@ namespace DBclass;
 
 use PHPUnit_Framework_TestCase;
 
-require 'DB.php';
+require '../core/models/database/DB.php';
 
 class DBTest extends PHPUnit_Framework_TestCase
 {
