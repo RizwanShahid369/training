@@ -291,7 +291,7 @@ class Criteria
     {
         if (!empty($col)) {
             foreach ($col as $key => $value) {
-                $this->select_list .= "$key =  " . "'" . $value . "'w,";
+                $this->select_list .= "$key =  " . "'" . $value . "',";
             }
         }
         $this->select_list = rtrim($this->select_list, ',');

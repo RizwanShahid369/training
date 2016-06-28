@@ -263,7 +263,6 @@ class Database
         }
         $this->sql = "UPDATE $tablename SET $columns WHERE $where";
         echo $this->sql;
-        die();
     }
 
     /**
