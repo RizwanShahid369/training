@@ -1,11 +1,11 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-06-27 00:09:02
+/* Smarty version 3.1.28, created on 2016-06-24 07:46:22
   from "/var/www/html/m_v_c/app/views/student/view.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_5770a6de723db6_71306423',
+  'unifunc' => 'content_576d1d8e58ff41_60772225',
   'file_dependency' => 
   array (
     'e8a0239cdb5ed3ca160f9e03f0a07ffb65275c67' => 
@@ -19,8 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5770a6de723db6_71306423 ($_smarty_tpl) {
-$_smarty_tpl->compiled->nocache_hash = '1510775725770a6de6b6155_82349484';
+function content_576d1d8e58ff41_60772225 ($_smarty_tpl) {
 ?>
 
 <table border="1">

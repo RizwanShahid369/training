@@ -9,7 +9,6 @@ class setup extends Smarty
         parent::__construct();
 
         $this->caching = Smarty::CACHING_LIFETIME_CURRENT;
-        $this->assign('app_name', 'My App');
     }
 
     function render($view, $controller)

@@ -1,19 +1,43 @@
 <?php
 include '../core/controllers/baseController.php';
-
+/*
+ * This file handles login functionality as controller extends Base Controller
+ */
 class loginController extends baseController
 {
-    public $model;
+    /*
+     * @construct constructs its base class
+     */
     function __construct()
     {
         parent::__construct();
-        $table = "login";
     }
 
+    /*
+     * Displays the login page through Smarty
+     * This function is used to display for first time only
+     */
     public function check()
     {
-        $this->displaySmartyLogin();
+        if(! isset($_COOKIE["name"])){
+            $this->displaySmartyLogin();
+        }
+        else {
+            $this->displaysmartNext();
+            $this->displaysmartLogout();
+        }
     }
+
+    /*
+     * @var $u variable contains username entered by user
+     * @var $p variable contains password entered by user
+     * @var $c variable contains value if user checks checkbox
+     * @var $chk bool variable contains result whether user exists or not
+     * This function takes user input send it to database and check if user exists,
+     * direct it to next pages based on the result of function logincheck.
+     * It initalizes session variables and save cooky if user checks checkbox
+     *
+     */
 
     public function chkLogin()
     {
@@ -42,7 +66,11 @@ class loginController extends baseController
             }
         }
     }
-    
+
+    /*
+     * @var $_POST['lo'] User input to logOut
+     * This functions logs Out session and clears cookies
+     */
     public function logout()
     {
         if(isset($_POST['lo']))
