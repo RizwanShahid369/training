@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-06-28 16:20:15
+/* Smarty version 3.1.28, created on 2016-06-29 16:08:01
   from "/var/www/html/training/training/Muneeba/template/app/views/generic/topMenu.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57725d6fac7e40_77419343',
+  'unifunc' => 'content_5773ac11c31bc5_61585669',
   'file_dependency' => 
   array (
     '570996eac9213940ec3f9d94e57fc3c9d719fe8f' => 
     array (
       0 => '/var/www/html/training/training/Muneeba/template/app/views/generic/topMenu.tpl',
-      1 => 1467112701,
+      1 => 1467198452,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57725d6fac7e40_77419343 ($_smarty_tpl) {
+function content_5773ac11c31bc5_61585669 ($_smarty_tpl) {
 ?>
 <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
@@ -29,7 +29,7 @@ function content_57725d6fac7e40_77419343 ($_smarty_tpl) {
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.html">SB Admin v2.0</a>
+        <a class="navbar-brand" href="index.html">Sakilla DB</a>
     </div>
     <!-- /.navbar-header -->
 
@@ -234,7 +234,7 @@ function content_57725d6fac7e40_77419343 ($_smarty_tpl) {
                 <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                 </li>
                 <li class="divider"></li>
-                <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                <li><a href="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                 </li>
             </ul>
             <!-- /.dropdown-user -->

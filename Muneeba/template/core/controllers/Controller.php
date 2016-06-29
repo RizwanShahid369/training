@@ -40,6 +40,22 @@ class Controller
 
     public function dashboard()
     {
+        $temp = $this->setModel('actor');
+        $count = $temp->countAll();
+        $this->viewManager->addParams('actors', $count);
+
+        $temp = $this->setModel('customer');
+        $count = $temp->countAll();
+        $this->viewManager->addParams('customers', $count);
+
+        $temp = $this->setModel('film');
+        $count = $temp->countAll();
+        $this->viewManager->addParams('films', $count);
+
+        $temp = $this->setModel('store');
+        $count = $temp->countAll();
+        $this->viewManager->addParams('stores', $count);
+
         $this->viewManager->render('dashboard', $this->controllerName);
     }
 
@@ -132,7 +148,7 @@ class Controller
     {
         //echo "Doing some action";
         $flag = $this->routing->checkMethod($method);
-        echo $method;
+        //echo $method;
         //$flag = 1;
 
         //var_dump($flag);

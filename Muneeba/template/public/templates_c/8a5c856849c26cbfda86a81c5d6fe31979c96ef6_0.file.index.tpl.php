@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-06-29 14:21:38
+/* Smarty version 3.1.28, created on 2016-06-29 15:43:47
   from "/var/www/html/training/training/Muneeba/template/app/views/actor/index.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_5773932254c1e5_26105894',
+  'unifunc' => 'content_5773a663723f13_73477200',
   'file_dependency' => 
   array (
     '8a5c856849c26cbfda86a81c5d6fe31979c96ef6' => 
     array (
       0 => '/var/www/html/training/training/Muneeba/template/app/views/actor/index.tpl',
-      1 => 1467192095,
+      1 => 1467193602,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5773932254c1e5_26105894 ($_smarty_tpl) {
+function content_5773a663723f13_73477200 ($_smarty_tpl) {
 ?>
 
 
@@ -39,7 +39,7 @@ function content_5773932254c1e5_26105894 ($_smarty_tpl) {
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Tables</h1>
+            <h1 class="page-header">Actor</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
