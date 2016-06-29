@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-06-29 15:28:56
+/* Smarty version 3.1.28, created on 2016-06-29 16:19:31
   from "/var/www/html/training/training/Muneeba/template/app/views/generic/sidebar.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_5773a2e8f2b9f8_30562228',
+  'unifunc' => 'content_5773aec3de3a03_11404169',
   'file_dependency' => 
   array (
     '9f52843189543899f2cb128fc1a121c11f711522' => 
     array (
       0 => '/var/www/html/training/training/Muneeba/template/app/views/generic/sidebar.tpl',
-      1 => 1467195759,
+      1 => 1467199130,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_5773a2e8f2b9f8_30562228 ($_smarty_tpl) {
+function content_5773aec3de3a03_11404169 ($_smarty_tpl) {
 ?>
 
 
@@ -119,53 +119,61 @@ function content_5773a2e8f2b9f8_30562228 ($_smarty_tpl) {
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
-         <!--   <li>
-                 <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                 <ul class="nav nav-second-level collapse">
-                     <li>
-                         <a href="#">Second Level Item</a>
-                     </li>
-                     <li>
-                         <a href="#">Second Level Item</a>
-                     </li>
-                     <li>
-                         <a href="#">Third Level <span class="fa arrow"></span></a>
-                         <ul class="nav nav-third-level collapse">
-                             <li>
-                                 <a href="#">Third Level Item</a>
-                             </li>
-                             <li>
-                                 <a href="#">Third Level Item</a>
-                             </li>
-                             <li>
-                                 <a href="#">Third Level Item</a>
-                             </li>
-                             <li>
-                                 <a href="#">Third Level Item</a>
-                             </li>
-                         </ul>
-                         <!-- /.nav-third-level
-                    </li>-
-                </ul>
-                <!-- /.nav-second-level
-            </li>
-            <li>
-                <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse">
-                    <li>
-                        <a href="#">Blank Page</a>
-                    </li>
-                    <li>
-                        <a href="../user/login">Login Page</a>
-                    </li>
-                </ul>
-                <!-- /.nav-second-level
-            </li> -->
+            <!--   <li>
+                    <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li>
+                            <a href="#">Second Level Item</a>
+                        </li>
+                        <li>
+                            <a href="#">Second Level Item</a>
+                        </li>
+                        <li>
+                            <a href="#">Third Level <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level collapse">
+                                <li>
+                                    <a href="#">Third Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Third Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Third Level Item</a>
+                                </li>
+                                <li>
+                                    <a href="#">Third Level Item</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-third-level
+                       </li>-
+                   </ul>
+                   <!-- /.nav-second-level
+               </li>
+               <li>
+                   <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
+                   <ul class="nav nav-second-level collapse">
+                       <li>
+                           <a href="#">Blank Page</a>
+                       </li>
+                       <li>
+                           <a href="../user/login">Login Page</a>
+                       </li>
+                   </ul>
+                   <!-- /.nav-second-level
+               </li> -->
         </ul>
     </div>
     <!-- /.sidebar-collapse -->
 </div>
 <!-- /.navbar-static-side -->
 </nav>
+
+<!-- /#wrapper -->
+
+
+
+</body>
+
+</html>
 <?php }
 }

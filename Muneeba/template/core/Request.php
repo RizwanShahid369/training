@@ -27,7 +27,7 @@ class Request
             session_destroy();
 
         } else {
-            if($url[0] == 'dashboard')
+            if($url[0] == 'dashboard' || $url[0] == 'logout')
             {
                 require_once('../core/controllers/Controller.php');
 

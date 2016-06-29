@@ -1,17 +1,17 @@
 <?php
-/* Smarty version 3.1.28, created on 2016-06-29 15:03:07
+/* Smarty version 3.1.28, created on 2016-06-29 15:53:46
   from "/var/www/html/training/training/Muneeba/template/app/views/dashboard.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
   'version' => '3.1.28',
-  'unifunc' => 'content_57739cdbc6aff4_45454484',
+  'unifunc' => 'content_5773a8ba680863_45093597',
   'file_dependency' => 
   array (
     'e8e62f03a99055b9893dd5d5713ec872741d25f3' => 
     array (
       0 => '/var/www/html/training/training/Muneeba/template/app/views/dashboard.tpl',
-      1 => 1467194435,
+      1 => 1467197388,
       2 => 'file',
     ),
   ),
@@ -19,7 +19,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
   ),
 ),false)) {
-function content_57739cdbc6aff4_45454484 ($_smarty_tpl) {
+function content_5773a8ba680863_45093597 ($_smarty_tpl) {
 ?>
 <div style="min-height: 372px;" id="page-wrapper">
     <div class="row">
@@ -38,8 +38,9 @@ function content_57739cdbc6aff4_45454484 ($_smarty_tpl) {
                             <i class="fa fa-comments fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">26</div>
-                            <div>New Comments!</div>
+                            <div class="huge"><?php echo $_smarty_tpl->tpl_vars['actors']->value;?>
+</div>
+                            <div>Students!</div>
                         </div>
                     </div>
                 </div>
@@ -60,8 +61,9 @@ function content_57739cdbc6aff4_45454484 ($_smarty_tpl) {
                             <i class="fa fa-tasks fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">12</div>
-                            <div>New Tasks!</div>
+                            <div class="huge"><?php echo $_smarty_tpl->tpl_vars['customers']->value;?>
+</div>
+                            <div>Customers!</div>
                         </div>
                     </div>
                 </div>
@@ -82,8 +84,9 @@ function content_57739cdbc6aff4_45454484 ($_smarty_tpl) {
                             <i class="fa fa-shopping-cart fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">124</div>
-                            <div>New Orders!</div>
+                            <div class="huge"><?php echo $_smarty_tpl->tpl_vars['films']->value;?>
+</div>
+                            <div>Films!</div>
                         </div>
                     </div>
                 </div>
@@ -104,8 +107,9 @@ function content_57739cdbc6aff4_45454484 ($_smarty_tpl) {
                             <i class="fa fa-support fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">13</div>
-                            <div>Support Tickets!</div>
+                            <div class="huge"><?php echo $_smarty_tpl->tpl_vars['stores']->value;?>
+</div>
+                            <div>Stores!</div>
                         </div>
                     </div>
                 </div>

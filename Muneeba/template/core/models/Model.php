@@ -80,8 +80,11 @@ class Model
         $this->db->select($criteria);
         $this->db->execute();
         $result = $this->db->resultSet();
-        
-        return $result;
+        if (!(empty($result))) {
+            //echo "I am user";
+            return $result[0]['count(*)'];
+        }
+        return -1;
 
     }
 
