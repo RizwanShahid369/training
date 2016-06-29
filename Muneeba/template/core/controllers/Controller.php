@@ -102,6 +102,10 @@ class Controller
     {
         $this->model->findOne();
     }
+    public function countAll()
+    {
+        $this->model->countAll();
+    }
 
     public function removeOne($id = '')
     {
