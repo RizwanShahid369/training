@@ -21,13 +21,16 @@ class BaseModel implements ModelInterface
     // protected $controller;
     //protected $method;
     protected $db_instance;
+    protected $tablename;
+    protected $fields;
+    protected $primary_key;
+    protected $foreign_key;
 
     /**
      * BaseModel constructor.
      */
     public function __construct()
     {
-        echo "hello base model<br>";
         $this->db_instance = Database::getInstance();
     }
 
@@ -39,21 +42,16 @@ class BaseModel implements ModelInterface
     {
         if (!empty($data)) {
             try {
-                $this->db_instance->insert('student', $data);
+                $this->db_instance->insert($this->tablename, $data);
                 $this->db_instance->prepare();
                 $this->db_instance->execute();
                 echo "record added!";
-                header("location:listt");
-                //call_user_func_array([$this->controller, $this->method],[]);
 
             } catch (Exception $e) {
-
                 echo $e->getMessage();
-
             }
 
         }
-
     }
 
     /**
@@ -63,17 +61,16 @@ class BaseModel implements ModelInterface
      */
     public function update($arr)
     {
-        echo "base model Update";
+        echo "student model Update";
         $criteria = new Criteria();
         $criteria->updateColumn($arr);
         $id = $_GET['id'];
         $id = (int)$id;
         $criteria->whereEqual('id', $id);
-        $this->db_instance->updateEntity('student', $criteria);
+        $this->db_instance->updateEntity($this->tablename, $criteria);
         $this->db_instance->prepare();
         $this->db_instance->execute();
-        header("location:listt");
-
+        header("location:listAll");
     }
 
     /**
@@ -84,12 +81,10 @@ class BaseModel implements ModelInterface
      */
     public function delete($id)
     {
-        $this->db_instance->deleteByPk('student', $id);
+        $this->db_instance->deleteByPk($this->tablename, $id);
         $this->db_instance->prepare();
         $this->db_instance->execute();
         echo "record deleted";
-        header("location:listt");
-
     }
 
     /**
@@ -99,24 +94,13 @@ class BaseModel implements ModelInterface
      */
     public function selectAll()
     {
-        // $db_instance = Database::getInstance();
-
         $criteria = new Criteria();
         $criteria->setColumns();
-        $this->db_instance->select('student', $criteria);
-
+        $this->db_instance->select($this->tablename, $criteria);
         $this->db_instance->prepare();
         $this->db_instance->execute();
         $res = $this->db_instance->resultSet();
         return $res;
-
-//        print_r($res);
-        /*foreach ($res as $key => $value) {
-            foreach ($value as $key2 => $value2) {
-                echo $key2 . ' is ' . $value2 . "<br>";
-            }
-        }*/
-        echo "<br>in the Select method of Db baseModel";
     }
 
     /**
@@ -127,9 +111,9 @@ class BaseModel implements ModelInterface
      * return all records based on particular criteria
      *
      */
-    public function select($tablename, $criteria)
+    public function select($criteria)
     {
-        $this->db_instance->select($tablename, $criteria);
+        $this->db_instance->select($this->tablename, $criteria);
         $this->db_instance->prepare();
         $this->db_instance->execute();
         $res = $this->db_instance->resultSet();
@@ -146,7 +130,7 @@ class BaseModel implements ModelInterface
      */
     public function selectBypk($id)
     {
-        $this->db_instance->selectByPK('student', $id);
+        $this->db_instance->selectByPK($this->tablename, $id);
         $this->db_instance->prepare();
         $this->db_instance->execute();
         $res = $this->db_instance->resultSet();

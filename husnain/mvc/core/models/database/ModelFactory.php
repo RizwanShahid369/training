@@ -7,12 +7,30 @@
  * Time: 2:59 AM
  */
 //require_once '../app/models/Student.php';
+
+
 class ModelFactory
 {
     public static function getModel($name)
     {
-        $class = ucwords($name);
-        echo $class;
+        try{
+            $class = ucwords($name);
+
+            if(class_exists($class))
+            {
+                require_once ("../app/models/". $class . '.php');
+                return new $class();
+            }
+            
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage());
+        }
+    }
+}
+
+
+/*$class = ucwords($name);
+
         if(class_exists($class))
         {
             require_once ("../app/models/". $class . '.php');
@@ -20,6 +38,4 @@ class ModelFactory
         }
         else {
             throw new Exception("Invalid class name!");
-        }
-    }
-}
+        }*/

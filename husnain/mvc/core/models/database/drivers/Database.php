@@ -1,12 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: husnain.zaheer
- * Date: 6/20/16
- * Time: 2:59 AM
- */
-require_once '../app/config.php';
 
 class Database
 {
@@ -22,36 +15,14 @@ class Database
      * @var PDO
      */
     private $conn;
-    /**
-     * Server name
-     *
-     * @var string
-     */
-    private $servername;
-    /**
-     * username of the database
-     *
-     * @var string
-     */
-    private $username;
-    /**
-     * Password of the database user
-     *
-     * @var string
-     */
-    private $password;
-    /**
-     * database name
-     *
-     * @var string
-     */
-    private $dbname;
+
     /**
      * Statement object of PDO
      *
      * @var
      */
     public $statement;
+    
     /**
      * SQL query to run against database tables
      *
@@ -66,16 +37,11 @@ class Database
      */
     private function __construct()
     {
-        $this->servername = "localhost";
-        $this->username = "root";
-        $this->password = "123";
-        $this->dbname = "test";
-
         try {
-            $this->conn = new PDO("mysql:host={$this->servername};dbname={$this->dbname}", $this->username, $this->password);
+            $this->conn = new PDO("mysql:host=".SERVER_NAME.";dbname=".DB_NAME, USER_NAME, PASSWORD);
             // set the PDO error mode to exception
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully<br>";
+//            echo "Connected successfully<br>";
         } catch (PDOException $e) {
             echo "Connection failed: " . $e->getMessage() . "<br>";
         }
@@ -110,10 +76,7 @@ class Database
      */
     public function prepare()
     {
-        echo "prepared<br>";
         $this->statement = $this->conn->prepare($this->sql);
-
-        //$statement = $conn->prepare($query);
     }
 
     /**
@@ -134,9 +97,6 @@ class Database
      */
     public function execute()
     {
-        echo "Execute<br>";
-//        global $statement;
-//        $statement->execute();
         $this->statement->execute();
     }
 
@@ -151,7 +111,6 @@ class Database
 
         $columns = $criteria->getColumns();
         $this->sql = "SELECT $columns FROM $table_name";
-        //echo "columns is ".$columns; die;
         if (strlen($criteria->getWhereClause())) {
             $whe = $criteria->getWhereClause();
             $this->sql .= " WHERE $whe ";
@@ -169,11 +128,7 @@ class Database
             $this->sql .= " ORDER BY $orderby ";
         }
 
-        echo $this->sql;
-//        echo $this->sql; die;
-        //$criteria->
-        // $sql .=''
-        // this->select_query = " SELECT first_name, last_name FROM accounts WHERE name like '%SDS%'"
+
     }
 
     /**
@@ -206,7 +161,6 @@ class Database
     public function deleteByPk($tablename, $id)
     {
         $this->sql = "DELETE FROM $tablename WHERE id = $id";
-        echo $this->sql;
 
     }
 
@@ -228,20 +182,16 @@ class Database
      */
     public function insert($table_name, $data)
     {
-        //$fields_value = '';
         $my_keys = '';
         $my_values = '';
         if (!empty($data)) {
             foreach ($data as $key => $value) {
-                // $fields_value .= "$key = $value,";
                 $my_keys .= "$key ,";
                 $my_values .= "'" . $value . "',";
             }
-            //$fields_value =  rtrim($fields_value,',');
             $my_keys = rtrim($my_keys, ',');
             $my_values = rtrim($my_values, ',');
             $this->sql = "INSERT INTO $table_name ($my_keys) VALUES ($my_values)";
-            echo $this->sql;
         }
 
     }
@@ -262,7 +212,6 @@ class Database
             $where = $criteria->getWhereClause();
         }
         $this->sql = "UPDATE $tablename SET $columns WHERE $where";
-        echo $this->sql;
     }
 
     /**
@@ -295,7 +244,6 @@ class Database
             $column = $criteria->getColumns();
         }
         $this->sql = "SELECT $column FROM $table1 JOIN $table2 ON $ON ";
-        //echo $this->sql; die;
     }
 
     /**
@@ -307,11 +255,7 @@ class Database
         $result = $this->statement->setFetchMode(PDO::FETCH_ASSOC);
         $result = $this->statement->fetchAll();
         return $result;
-//        print_r($result);
-//        foreach($result as $row){
-//            echo "<li>{$row['filmName']}</li>";
-//        }
-//        echo 'Result is: '.$result;
+
     }
 
 }

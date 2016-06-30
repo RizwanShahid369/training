@@ -6,25 +6,31 @@
  * Date: 6/20/16
  * Time: 2:55 AM
  */
-require_once '../core/controllers/ControllerInterface.php';
-require_once '../core/models/database/ModelFactory.php';
-require_once '../core/views/viewManager.php';
+error_reporting(E_ALL);
+//error_reporting(E_ERROR | E_WARNING | E_PARSE);
+ini_set("display_errors", "On");
+//require_once '../core/controllers/ControllerInterface.php';
+//require_once '../core/models/database/ModelFactory.php';
+//require_once '../core/views/viewManager.php';
 
 /**
  * Class BaseController
  *
- * provide methods 
+ * provide methods
  */
 
 class BaseController implements ControllerInterface
 {
     protected $view_manager;
     protected $model;
+    protected $model_name;
     protected $controller_name;
+    protected $tablename;
+
 
 
     /**
-     * @param mixed $model
+     * @param mixed $modelstudent
      */
     public function setModel($model)
     {
@@ -42,10 +48,8 @@ class BaseController implements ControllerInterface
 
     public function __construct()
     {
-        echo "hello base Controller<br>";
         $this->model = ModelFactory::getModel($this->model);
         $this->view_manager = new ViewManager();
-//        var_dump($this->model_factory);
     }
 
     /**
@@ -54,21 +58,14 @@ class BaseController implements ControllerInterface
      */
     public function add()
     {
-        echo "in the add method base ";
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $this->view_manager->render('add', $this->controller_name);
         } else {
             echo "method is POST";
-            $first_name = $_POST['fname'];
-            $last_name = $_POST['lname'];
-            $address = $_POST['address'];
-            $this->model->insert(array('first_name' => $first_name,
-                'last_name' => $last_name,
-                'address' => $address));
-
+            $arry = $_POST[$this->model_name];
+            $this->model->insert($arry);
+            header("location:listAll");
         }
-
-//        $this->model_factory->
     }
 
     /**
@@ -80,24 +77,19 @@ class BaseController implements ControllerInterface
         echo "in the delete";
         $id = $_GET['id'];
         $this->model->delete($id);
+        header("location:listAll");
     }
 
     /**
      * list all records from the table
      *
      */
-    public function listt()
+    public function listAll()
     {
-        session_start();
-        if ($_SESSION['name']) {
-            $res = $this->model->selectAll();
-            $this->view_manager->addParams('stdarr', $res);
-            $this->view_manager->render('listt', $this->controller_name);
-        } else {
-            echo "Please login first";
-        }
+        $res = $this->model->selectAll($this->tablename);
+        //$this->view_manager->addParams('arr', $res);
+        $this->view_manager->render('listAll', $this->controller_name, $res);
     }
-
     /**
      * edit particular record from the database
      *
@@ -107,17 +99,31 @@ class BaseController implements ControllerInterface
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $id = $_GET['id'];
             $res = $this->model->selectByPk($id);
-
-            $this->view_manager->addParams('record', $res);
-            $this->view_manager->render('edit', $this->controller_name);
+            print_r($res);
+            //$this->view_manager->addParams('record', $res);
+            $this->view_manager->render('edit', $this->controller_name,$res);
         } else {
-            $fname = $_POST['fname'];
-            $lname = $_POST['lname'];
-            $address = $_POST['address'];
-            $this->model->update(array('first_name' => $fname, 'last_name' => $lname, 'address' => $address));
-            echo "do update call to bla bla ";
+          $arry = $_POST[$this->model_name];
+            $this->model->update($arry);
+        }
+    }
+    public function notFound()
+    {
+        echo "not found called";
+        $this->view_manager->render('error','layouts', '404');
+    }
+    public function doAction($controller,$method)
+    {
+        if (isset($method)) {
+            if (method_exists($controller, $method)) {
+                call_user_func_array([$controller, $method],[]);
+
+            } else {
+                echo " {$method} NOT Exists";
+                $this->notFound();
+            }
 
         }
-
     }
+
 }

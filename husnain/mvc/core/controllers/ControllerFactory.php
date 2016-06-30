@@ -12,7 +12,7 @@ class ControllerFactory
     {
         $class = ucwords($name) . 'Controller';
         if (class_exists($class)) {
-            require_once("../app/controllers/" . $class . 'Controller' . '.php');
+            require_once("../app/controllers/" . $class. '.php');
             return new $class();
         } else {
             throw new Exception("Invalid class name given.");

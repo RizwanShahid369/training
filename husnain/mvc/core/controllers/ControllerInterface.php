@@ -11,5 +11,5 @@ interface ControllerInterface
     public function add();
     public function edit();
     public function delete();
-    public function listt();
+    public function listAll();
 }

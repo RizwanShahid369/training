@@ -46,7 +46,7 @@ function content_576b92131968d1_12914644 ($_smarty_tpl) {
 
     </table>
 
-<a href="listt">View All</a>
+<a href="listAll">View All</a>
 
 </body>
 </html>
