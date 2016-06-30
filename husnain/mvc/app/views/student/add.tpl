@@ -1,31 +1,34 @@
-<html>
-<head>
-    <title>Add Form</title>
-</head>
-<body>
-<h3>student add page </h3>
 
-<form method="post" action="">
-    <table>
-        <tr>
-            <td>Fist Name:</td>
-            <td> <input type="text" name="fname"></td>
-        </tr>
-        <tr>
-            <td> Last Name:</td>
-            <td> <input type="text" name="lname"></td>
-        </tr>
-        <tr>
-            <td>Address:</td>
-            <td><input type="text" name="address"></td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Submit"> </td>
-        </tr>
+{extends file="../layouts/layout.tpl"}
+{*{extends file="../weblayout/index.tpl"}*}
 
-    </table>
+{block name=title} student add page {/block}
+{block name=body}
+    <h3>student add page </h3>
+    <div class="col-lg-6">
 
-<a href="listt">View All</a>
+        <form role="form" method="post" action="">
 
-</body>
-</html>
+            <div class="form-group">
+                <label>Fist Name</label>
+                <input class="form-control" type="text" name="student[first_name]" placeholder="First Name">
+            </div>
+            <div class="form-group">
+                <label>Last Name</label>
+                <input class="form-control" type="text" name="student[last_name]" placeholder="Last Name">
+            </div>
+
+            <div class="form-group">
+                <label>Address</label>
+                <input type="text" class="form-control" name="student[address]" placeholder="Address">
+            </div>
+
+            <div>
+                <input type="submit" class="btn btn-default" value="Submit">
+            </div>
+        </form>
+
+        <a href="listAll">View All</a>
+    </div>
+{/block}
+

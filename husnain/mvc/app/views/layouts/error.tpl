@@ -1,0 +1,1 @@
+<h1>{$data} Page NOT FOUND</h1>

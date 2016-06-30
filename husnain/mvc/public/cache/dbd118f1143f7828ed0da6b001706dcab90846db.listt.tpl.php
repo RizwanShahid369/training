@@ -1,6 +1,6 @@
 <?php
 /* Smarty version 3.1.28, created on 2016-06-23 03:36:32
-  from "/var/www/html/training/training/husnain/mvc/app/views/student/listt.tpl" */
+  from "/var/www/html/training/training/husnain/mvc/app/views/student/listAll.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
@@ -10,7 +10,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
     'dbd118f1143f7828ed0da6b001706dcab90846db' => 
     array (
-      0 => '/var/www/html/training/training/husnain/mvc/app/views/student/listt.tpl',
+      0 => '/var/www/html/training/training/husnain/mvc/app/views/student/listAll.tpl',
       1 => 1466601877,
       2 => 'file',
     ),
@@ -32,7 +32,7 @@ function content_576b9180a4bc83_66951775 ($_smarty_tpl) {
 </tr>
     <br />
 <font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
-<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined index: stdarr in /var/www/html/training/training/husnain/mvc/public/templates_c/dbd118f1143f7828ed0da6b001706dcab90846db_0.file.listt.tpl.cache.php on line <i>37</i></th></tr>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Undefined index: stdarr in /var/www/html/training/training/husnain/mvc/public/templates_c/dbd118f1143f7828ed0da6b001706dcab90846db_0.file.listAll.tpl.cache.php on line <i>37</i></th></tr>
 <tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
 <tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
 <tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0000</td><td bgcolor='#eeeeec' align='right'>234200</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/training/training/husnain/mvc/public/index.php' bgcolor='#eeeeec'>../index.php<b>:</b>0</td></tr>
@@ -53,7 +53,7 @@ function content_576b9180a4bc83_66951775 ($_smarty_tpl) {
 </table></font>
 <br />
 <font size='1'><table class='xdebug-error xe-notice' dir='ltr' border='1' cellspacing='0' cellpadding='1'>
-<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Trying to get property of non-object in /var/www/html/training/training/husnain/mvc/public/templates_c/dbd118f1143f7828ed0da6b001706dcab90846db_0.file.listt.tpl.cache.php on line <i>37</i></th></tr>
+<tr><th align='left' bgcolor='#f57900' colspan="5"><span style='background-color: #cc0000; color: #fce94f; font-size: x-large;'>( ! )</span> Notice: Trying to get property of non-object in /var/www/html/training/training/husnain/mvc/public/templates_c/dbd118f1143f7828ed0da6b001706dcab90846db_0.file.listAll.tpl.cache.php on line <i>37</i></th></tr>
 <tr><th align='left' bgcolor='#e9b96e' colspan='5'>Call Stack</th></tr>
 <tr><th align='center' bgcolor='#eeeeec'>#</th><th align='left' bgcolor='#eeeeec'>Time</th><th align='left' bgcolor='#eeeeec'>Memory</th><th align='left' bgcolor='#eeeeec'>Function</th><th align='left' bgcolor='#eeeeec'>Location</th></tr>
 <tr><td bgcolor='#eeeeec' align='center'>1</td><td bgcolor='#eeeeec' align='center'>0.0000</td><td bgcolor='#eeeeec' align='right'>234200</td><td bgcolor='#eeeeec'>{main}(  )</td><td title='/var/www/html/training/training/husnain/mvc/public/index.php' bgcolor='#eeeeec'>../index.php<b>:</b>0</td></tr>

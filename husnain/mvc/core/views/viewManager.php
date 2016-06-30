@@ -10,6 +10,7 @@ require_once ('/var/www/html/training/training/husnain/mvc/vendor/Smarty/setup.p
 
 class ViewManager
 {
+    public $data;
     public $smarty;
     public function __construct()
     {
@@ -21,8 +22,9 @@ class ViewManager
         $this->smarty->addParams($key , $value);
     }
 
-    public function render($view, $controller)
+    public function render($view, $controller,$data=[])
     {
+        $this->addParams('data', $data);
         $this->smarty->render($view, $controller);
 
     }

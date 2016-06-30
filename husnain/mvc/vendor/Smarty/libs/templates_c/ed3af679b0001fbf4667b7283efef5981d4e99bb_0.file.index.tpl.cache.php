@@ -1,6 +1,6 @@
 <?php
 /* Smarty version 3.1.28, created on 2016-06-20 06:19:27
-  from "/var/www/html/training/training/Muneeba/DBclass/Templates/index.tpl" */
+  from "/var/www/html/training/training/Muneeba/DBclass/Templates/index.html" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
@@ -10,7 +10,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
     'ed3af679b0001fbf4667b7283efef5981d4e99bb' => 
     array (
-      0 => '/var/www/html/training/training/Muneeba/DBclass/Templates/index.tpl',
+      0 => '/var/www/html/training/training/Muneeba/DBclass/Templates/index.html',
       1 => 1466413146,
       2 => 'file',
     ),

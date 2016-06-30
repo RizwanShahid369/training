@@ -1,6 +1,6 @@
 <?php
 /* Smarty version 3.1.28, created on 2016-06-22 09:24:41
-  from "/var/www/html/training/training/husnain/mvc/app/views/student/listt.tpl" */
+  from "/var/www/html/training/training/husnain/mvc/app/views/student/listAll.tpl" */
 
 if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl, array (
   'has_nocache_code' => false,
@@ -10,7 +10,7 @@ if ($_smarty_tpl->smarty->ext->_validateCompiled->decodeProperties($_smarty_tpl,
   array (
     'dbd118f1143f7828ed0da6b001706dcab90846db' => 
     array (
-      0 => '/var/www/html/training/training/husnain/mvc/app/views/student/listt.tpl',
+      0 => '/var/www/html/training/training/husnain/mvc/app/views/student/listAll.tpl',
       1 => 1466601877,
       2 => 'file',
     ),
