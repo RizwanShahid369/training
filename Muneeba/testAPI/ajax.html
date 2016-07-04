@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<input name="actor_id" id="id">
+<button id="action-button">Click me to load actor!</button>
+<button id="delete-button">Click me to delete an actor!</button>
+<div id="info"></div>
+
+<br>
+<input name="first_name" id="first_name">
+<input name="last_name" id="last_name">
+<button id="add-button">Click me to add an actor!</button>
+
+<button id="edit-button">Click me to edit an actor!</button>
+
+
+
+</body>
+</html>
+
+<script src="jquery/jquery.js"></script>
+
+<script>
+
+    $('#delete-button').click(function() {
+        var id= $("#id").val();
+        $.ajax({
+            type: "DELETE", 		//GET or POST or PUT or DELETE verb
+            url: "http://localhost/zf/public/actor/" + id, 		// Location of the service
+            data: "", 		//Data sent to server
+            contentType: "",		// content type sent to server
+            dataType: "json", 	//Expected data format from server
+            processdata: true, 	//True or False
+            success: function (json) {//On Successful service call
+                alert("Successfully delete actor_id "+ id);
+            },
+            error: function (json) {
+                ServiceFailed	// When Service call fails
+                alert("Fail");
+            }
+
+        });
+
+    });
+
+
+    $('#action-button').click(function() {
+        var id= $("#id").val();
+        $.ajax({
+            type: "GET", 		//GET or POST or PUT or DELETE verb
+            url: "http://localhost/zf/public/actor/" + id, 		// Location of the service
+            data: "", 		//Data sent to server
+            contentType: "",		// content type sent to server
+            dataType: "json", 	//Expected data format from server
+            processdata: true, 	//True or False
+            success: function (json) {//On Successful service call
+                alert("Success");
+                var result = json.first_name;
+                $("#info").html(result).append(' ' + json.last_name).append(' ' + json.last_update);
+            },
+            error: function (json) {
+                ServiceFailed	// When Service call fails
+                alert("Fail");
+            }
+
+        });
+
+    });
+
+    $('#add-button').click(function() {
+
+        var fname= $("#first_name").val();
+        var lname= $("#last_name").val();
+
+        //alert(fname + lname);
+        var data= "{ first_name:" + fname  +", last_name: " + lname + "}";
+        var dt = {
+            "first_name": fname,
+            "last_name": lname,
+            //"last_update": "0000-12-12"
+        };
+        //alert(JSON.stringify(data));
+        $.ajax({
+            type: "POST", 		//GET or POST or PUT or DELETE verb
+            url: "http://localhost/zf/public/actor", 		// Location of the service
+            data: JSON.stringify(dt),	//Data sent to server
+            contentType: "application/json", // content type sent to server
+            processdata: true, 	//True or False
+            success: function (json) {//On Successful service call
+                alert("Success");
+            },
+            error: function (json) {
+                alert("Fail");
+            }
+
+        });
+
+    });
+
+    $('#edit-button').click(function() {
+
+        var fname= $("#first_name").val();
+        var lname= $("#last_name").val();
+        var id= $("#id").val();
+        var dt = {
+            "first_name": fname,
+            "last_name": lname,
+            //"last_update": "0000-12-12"
+        };
+        //alert(JSON.stringify(data));
+        $.ajax({
+            type: "PUT", 		//GET or POST or PUT or DELETE verb
+            url: "http://localhost/zf/public/actor/" + id, 		// Location of the service
+            data: JSON.stringify(dt),	//Data sent to server
+            contentType: "application/json", // content type sent to server
+            processdata: true, 	//True or False
+            success: function (json) {//On Successful service call
+                alert("Success");
+            },
+            error: function (json) {
+                alert("Fail");
+            }
+
+        });
+
+    });
+</script>
+
