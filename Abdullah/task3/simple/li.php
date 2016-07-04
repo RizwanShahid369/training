@@ -60,7 +60,7 @@ echo "<td>{$row['fname']}</td>";
 
 	}else{
 
-	//if database table is empty
+	//if database table is empty	
 
 	echo "No records found.";
 
