@@ -20,6 +20,7 @@ class crieteria
     public $values;
     public $delete;
     public $update;
+    public $set;
     public $selectAll;
     public $pk;
     public $dPk;
@@ -95,15 +96,17 @@ class crieteria
         return $this->orderBy;
     }
 
-    public function buildValues()
+    public function buildValues($str)
     {
-        $this->values = "VALUES (:n, :d, :fn, :cl, :a, :ci, :sc)";
+        $this->values = "VALUES (".$str.")";
+
+        echo "-",$this->values,"-";
         return $this->values;
     }
 
     public function buildDeleteWhere($del)
     {
-        $this->delete = "$del >= :$del";
+        $this->delete = "$del = :$del";
     }
 
     public function getDeleteWhere()
@@ -113,7 +116,12 @@ class crieteria
 
     public function buildUpdateWhere($id)
     {
-        $this->update = "$id = :$id";
+        $this->update = "id = :id";
+    }
+
+    public function buildUpdateSet($qString)
+    {
+        $this->set = " SET ".$qString;
     }
 
     public function getUpdateWhere()

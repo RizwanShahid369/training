@@ -1,0 +1,8 @@
+DELETE:
+curl -X "DELETE" http://localhost/apigility/public/students/44
+
+GET:
+curl http://localhost/apigility/public/students/44
+
+
+

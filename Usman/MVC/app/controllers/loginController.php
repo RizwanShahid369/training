@@ -1,5 +1,6 @@
 <?php
 include '../core/controllers/baseController.php';
+include '../core/models/modelFactory.php';
 /*
  * This file handles login functionality as controller extends Base Controller
  */
@@ -11,6 +12,10 @@ class loginController extends baseController
     function __construct()
     {
         parent::__construct();
+
+        $this->setController('login');
+        $this->setModel('login');
+        $this->obj = modelFactory::generateModel('login');
     }
 
     /*
@@ -45,10 +50,8 @@ class loginController extends baseController
         $p = $_POST['pass'];
         $c = $_POST['cook'];
 
-        $user = $this->model('login');
-
         if (isset($u) && isset($p)) {
-            $chk = $user->logincheck($u, $p);
+            $chk = $this->obj->logincheck($u, $p);
 
             if($chk==true) {
                 $_SESSION['valid'] = true;
@@ -60,9 +63,10 @@ class loginController extends baseController
                     setcookie("name", $u, time()+36, "/","", 0);
                 }
                 $this->displaysmartNext();
-                $this->displaysmartLogout();
+                //$this->displaysmartLogout();
             } else {
                  echo "Please Loginnnn";
+                 $this->check();
             }
         }
     }
@@ -75,8 +79,7 @@ class loginController extends baseController
     {
         if(isset($_POST['lo']))
         {
-            $user = $this->model('login');
-            $res = $user->logsOut();
+            $res = $this->obj->logsOut();
         }
     }
 }

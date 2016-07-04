@@ -1,56 +1,56 @@
 <?php
 
 include '../core/controllers/baseController.php';
+include '../core/models/modelFactory.php';
 
 class studentController extends baseController
 {
+    public $obj;
     public function __construct()
     {
         parent::__construct();
+
+        $fac = new modelFactory();
+        $this->setController('student');
+        $this->setModel('student');
+        $this->obj = $fac->generateModel('student');
+        $this->setObject($this->obj);
     }
 
-    public function select($para1)
+   /* public function select()
     {
-        $user = $this->model($para1);
-        $res = $user->selectFunction();
+        $res = $this->obj->selectFunction();
         $this->displaySmarty($res);
-    }
+    }*/
 
-    /**
-     * @return mixed
-     */
-    public function insert()
+    /*public function insert()
     {
         $this->displaySmartyInsert();
-    }
+    }*/
 
-    public function insertVal()
+  /*  public function insertVal()
     {
-        $user = $this->model('student');
-
-        $res = $user->insertFunction($_POST['name'],$_POST['dob'],$_POST['fname'],$_POST['class'],$_POST['address'],$_POST['city'],
+        $this->obj->insertFunction($_REQUEST);$_POST['name'],$_POST['dob'],$_POST['fname'],$_POST['class'],$_POST['address'],$_POST['city'],
             $_POST['school']);
-    }
+        $this->select();
+    }*/
 
-    public function delete()
+   /* public function delVal($data)
     {
-        $this->displaySmartyDelete();
-    }
+        $res = $this->obj->deleteFunction($data);
+        $this->select();
+    }*/
 
-    public function delVal()
+    /*public function edit($data)
     {
-        $user = $this->model('student');
-        $res = $user->deleteFunction($_POST['id']);
-    }
+        $id = $data;
+        $data = $this->object->buildValue($id, $_REQUEST);
+        $this->displaySmartyEdit($data);
+    }*/
 
-    public function edit()
+   /* public function editVal()
     {
-        $this->displaySmartyEdit();
-    }
-
-    public function editVal()
-    {
-        $user = $this->model('student');
-        $res = $user->editFunction($_POST['id'], $_POST['class']);
-    }
+        $this->obj->editFunction($_POST['id'],$_POST['name'],$_POST['fname'], $_POST['dob'], $_POST['address'], $_POST['school'], $_POST['city']);
+        $this->select();
+    }*/
 }

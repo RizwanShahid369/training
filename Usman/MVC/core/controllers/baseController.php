@@ -1,53 +1,95 @@
 <?php
 
 include ('../core/viewManager.php');
+
 class baseController
 {
     public $controller;
     public $model;
     public $tpl;
+    public $object;
+    public $result;
 
     public function __construct()
     {
         $this->viewManager = new ViewManager();
     }
 
-    public function model($model)
+    public function doAction($method, $controller, $param)
     {
-        require_once ("../app/models/". $model . '.php');
-        $this->controller = $model;
-        $this->model = new $model;
-        return $this->model;
+        call_user_func_array([$controller, $method], $param);
+    }
+
+    public function setController($cont)
+    {
+        $this->controller = $cont;
+    }
+
+    public function setModel($model)
+    {
+        $this->model = $model;
+    }
+
+    public function setObject($obj)
+    {
+        $this->object = $obj;
+    }
+
+    public function select()
+    {
+        $res = $this->object->selectFunction();
+        $this->displaySmarty($res);
+    }
+
+    public function insert()
+    {
+        $this->displaySmartyInsert();
+    }
+
+    public function insertVal()
+    {
+        $this->object->insertFunction($_REQUEST);
+        $this->select();
+    }
+
+    public function delVal($data)
+    {
+        $res = $this->object->deleteFunction($data);
+        $this->select();
+    }
+
+    public function editVal()
+    {
+        $this->object->editFunction($_REQUEST);
+        $this->select();
+    }
+
+    public function edit($data)
+    {
+        $data = $this->object->buildData($data, $_REQUEST);
+        $this->displaySmartyEdit($data);
     }
 
     public function displaySmarty($res)
     {
         $this->viewManager->addParams('arr', $res);
-        $this->viewManager->render('view', $this->controller);
+        $this->viewManager->render($this->model,'view', $this->controller);
     }
 
     public function displaySmartyInsert()
     {
-        include '../app/views/student/insert.tpl';
-        $this->viewManager->render('insert', $this->controller);
+        $this->viewManager->render($this->model, 'insert', $this->controller);
     }
 
-    public function displaySmartyDelete()
+    public function displaySmartyEdit($data)
     {
-        include '../app/views/student/delete.tpl';
-        $this->viewManager->render('delete', $this->controller);
-    }
-
-    public function displaySmartyEdit()
-    {
-        include '../app/views/student/edit.tpl';
-        $this->viewManager->render('edit', $this->controller);
+        $this->viewManager->data = $data;
+        $this->viewManager->render($this->model,'forms', $this->controller);
     }
 
     public function displaySmartyLogin()
     {
-        include '../app/views/login/login.tpl';
-        //$this->viewManager->render('login', $this->controller);
+        $this->viewManager->render($this->model,'login', $this->controller);
     }
     
     public function displaysmartLogout()
@@ -57,6 +99,6 @@ class baseController
 
     public function displaysmartNext()
     {
-        include '../app/views/next/next.tpl';
+        $this->viewManager->render($this->model,'index', $this->controller);
     }
 }
