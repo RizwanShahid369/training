@@ -20,12 +20,13 @@ class teacher extends basemodel
         return $res;
     }
 
-    public function insertFunction($v1,$v2,$v3)
+    public function insertFunction($var)
     {
+
         $data = [
-            ':name'=> $v1,
-            ':dept'=> $v2,
-            ':rank'=> $v3
+            ':name'=> $var['name'],
+            ':dept'=> $var['dept'],
+            ':rank'=> $var['rank']
         ];
 
         $fields = array("name", "dept", "rank");
@@ -38,15 +39,26 @@ class teacher extends basemodel
         $this->delete("teacher",$v1);
     }
 
-    public function editFunction ($id, $n, $dept, $rank)
+    public function editFunction ($var)
     {
         $qStr = "name = :name, dept = :dept, rank = :rank";
         $data = [
-            ':id' => $id,
-            ':name' => $n,
-            ':dept' => $dept,
-            ':rank' => $rank
+            ':id' => $var['id'],
+            ':name' => $var['name'],
+            ':dept' => $var['dept'],
+            ':rank' => $var['rank']
         ];
         $this->update("teacher",$qStr, $data);
+    }
+
+    public function buildData($id, $var)
+    {
+        $data = [
+            'id' => $id,
+            'name' => $var['name'],
+            'dept' => $var['dept'],
+            'rank' => $var['rank']
+        ];
+        return $data;
     }
 }

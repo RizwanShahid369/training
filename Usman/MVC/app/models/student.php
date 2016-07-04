@@ -14,16 +14,16 @@ class student extends basemodel
         return $res;
     }
 
-    public function insertFunction($v1,$v2,$v3,$v4,$v5,$v6,$v7)
+    public function insertFunction($data1)
     {
         $data = [
-            ':n'=> $v1,
-            ':d'=> $v2,
-            ':fn'=> $v3,
-            ':cl' => $v4,
-            ':a' => $v5,
-            ':ci' => $v6,
-            ':sc' => $v7
+            ':n'=> $data1['name'],
+            ':d'=> $data1['dob'],
+            ':fn'=> $data1['fname'],
+            ':cl' => $data1['class'],
+            ':a' => $data1['address'],
+            ':ci' => $data1['city'],
+            ':sc' => $data1['school']
         ];
         $bField = ":n, :d, :fn, :cl, :a, :ci, :sc";
         $table= "students";
@@ -37,19 +37,33 @@ class student extends basemodel
         $this->delete("students", $v1);
     }
     
-    public function editFunction ($id, $n, $fn, $dob, $add, $school, $city)
+    public function editFunction ($var)
     {
         $qStr = "name=:name, Father_Name=:Father_Name, dob=:dob, address=:address, school=:school, city=:city";
         $data = [
-            ':id' => $id,
-            ':name' => $n,
-            ':Father_Name' => $fn,
-            ':dob' => $dob,
-            ':address' => $add,
-            ':school' => $school,
-            ':city' => $city
+            ':id' => $var['id'],
+            ':name' => $var['name'],
+            ':Father_Name' => $var['fname'],
+            ':dob' => $var['dob'],
+            ':address' => $var['address'],
+            ':school' => $var['school'],
+            ':city' => $var['city']
         ];
         $table = "students";
         $this->update($table, $qStr, $data);
+    }
+
+    public function buildData($id, $var)
+    {
+        $data = [
+            'id' => $id,
+            'name' => $var['name'],
+            'fname' => $var['fname'],
+            'dob' => $var['dob'],
+            'city' => $var['city'],
+            'address' => $var['address'],
+            'school'=> $var['school']
+        ];
+        return $data;
     }
 }

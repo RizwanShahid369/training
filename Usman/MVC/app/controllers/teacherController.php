@@ -20,60 +20,6 @@ class teacherController extends baseController
         $this->setController('teacher');
         $this->setModel('teacher');
         $this->obj = $fac->generateModel('teacher');
-        //$this->showIndex();
-    }
-
-    public function showIndex()
-    {
-        $this->displaysmartNext();
-    }
-    
-    public function select()
-    {
-        $res = $this->obj->selectFunction();
-        $this->displaySmarty($res);
-    }
-
-    public function insert()
-    {
-        $this->displaySmartyInsert();
-    }
-
-    public function insertVal()
-    {
-        $this->obj->insertFunction($_POST['name'],$_POST['dept'],$_POST['rank']);
-        $this->insert();
-    }
-
-    public function delVal($data)
-    {
-        $this->obj->deleteFunction($data);
-        $this->select();
-    }
-
-    public function edit($data)
-    {
-        if (! empty($data)) {
-
-            $id = $data;
-
-            $name = $_GET['name'];
-            $dept = $_GET['dept'];
-            $rank = $_GET['rank'];
-
-            $data = [
-                'id' => $data,
-                'name' => $name,
-                'dept' => $dept,
-                'rank' => $rank
-            ];
-            $this->displaySmartyEdit($data);
-        }
-    }
-
-    public function editVal()
-    {
-        $this->obj->editFunction($_POST['id'],$_POST['name'],$_POST['dept'], $_POST['rank']);
-        $this->select();
+        $this->setObject($this->obj);
     }
 }

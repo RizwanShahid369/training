@@ -26,7 +26,7 @@
 
                                 <div class="form-group">
                                     <label>City</label>
-                                    <input class="form-control" name="city"">
+                                    <input class="form-control" name="city">
                                 </div>
 
                                 <div class="form-group">
@@ -43,7 +43,7 @@
                                     <label>School</label>
                                     <input class="form-control" name="school">
                                 </div>
-                                <input type="hidden" name="id" value="{$id}">
+                                <input type="hidden" name="student" value="{$id}">
                                 <button type="submit" class="btn btn-default">Submit Button</button>
                                 <button type="reset" class="btn btn-default">Reset Button</button>
                             </form>
