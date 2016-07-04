@@ -42,8 +42,8 @@ class TestCurl
             )
         ));
         $resp = curl_exec($this->curl);
-//        print_r($resp);
-        if (!$resp) {
+        print_r($resp);
+          if (!$resp) {
             die('Error: "' . curl_error($this->curl) . '" - Code: ' . curl_errno($this->curl));
         }
         curl_close($this->curl);
@@ -93,4 +93,4 @@ class TestCurl
 $ob = new TestCurl();
 //$ob->getTeacher();
 
-$ob->addteacher();
+$ob->getTeacher();
