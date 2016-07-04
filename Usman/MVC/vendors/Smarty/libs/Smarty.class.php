@@ -433,7 +433,7 @@ class Smarty extends Smarty_Internal_TemplateBase
      *
      * @var integer
      */
-    public $php_handling = self::PHP_PASSTHRU;
+    public $php_handling = SMARTY_PHP_ALLOW;
 
     /**
      * controls if the php template file resource is allowed

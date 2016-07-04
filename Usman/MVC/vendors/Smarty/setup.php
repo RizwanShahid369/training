@@ -8,7 +8,7 @@ class setup extends Smarty
     {
         parent::__construct();
 
-        $this->caching = Smarty::CACHING_LIFETIME_CURRENT;
+//        $this->caching = Smarty::CACHING_LIFETIME_CURRENT;
     }
 
     function render($view, $controller)

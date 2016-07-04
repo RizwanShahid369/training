@@ -1,6 +1,7 @@
 <?php
 
 include 'database/database.php';
+include 'database/crieteria.php';
 
 class basemodel
 {
@@ -14,10 +15,10 @@ class basemodel
 
     }
 
-    public function select()
+    public function select($table)
     {
         $obDB = new database();
-        $obDB->selectAll("students","*");
+        $obDB->selectAll($table,"*");
         $obDB->Prepare();
         $obDB->Execute();
         $res = $obDB->resultSet();
@@ -25,63 +26,68 @@ class basemodel
         return $res;
     }
 
-    public function insert($v1,$v2,$v3,$v4,$v5,$v6,$v7)
+    public function insert($table, $data, $fields, $bField)
     {
-        $fields = array("name", "dob", "Father_Name", "class", "address", "city", "school");
         $obj = new crieteria();
-        $obj->buildValues();
+        $obj->buildValues($bField);
         $obDB = new database();
-        $obDB->insert("students",$fields, $obj);
+        $obDB->insert($table,$fields, $obj);
         $obDB->Prepare();
-        $obDB->bindInsert(':n', ':d', ':fn', ':cl', ':a', ':ci', ':sc', $v1,$v2,$v3,$v4,$v5,$v6,$v7);
+        $obDB->bindInsert($data);
         $obDB->Execute();
     }
     
-    public function delete($v1)
+    public function delete($table, $v1)
     {
         $obj = new crieteria();
         $obj->buildDeleteWhere("id");
+        
         $obDB = new database();
-        $obDB->delete("students", $obj);
+        $obDB->delete($table, $obj);
         $obDB->Prepare();
         $obDB->bindDelete(':id', $v1);
         $obDB->Execute();
     }
-    public function update($id, $fields)
+    public function update($table, $qStr, $data)
     {
         $obj = new crieteria();
         $obj->buildUpdateWhere("id");
+        $obj->buildUpdateSet($qStr);
+
         $obDB = new database();
-        $obDB->update("students", 'class', $obj);
+        $obDB->update($table, $obj);
         $obDB->Prepare();
-        $obDB->bindUpdate(':f', $fields, ':id', $id);
+
+        $obDB->bindUpdate($data);
         $obDB->Execute();
     }
     
     public function login($table, $fields, $id, $pass)
     {
-
         $obj = new crieteria();
         $obj->buildLoginWhere();
 
         $obDB = new database();
         $obDB->loginSelect($table, $fields, $obj);
+
         $obDB->Prepare();
         $obDB->bind(':id', $id, 'pass',$pass);
         $obDB->Execute();
         $res = $obDB->resultSet();
+        
         if ($res== "N") {
             echo "Sorry, Invalid Details";
         }
         else {
-            $u= $res['id'];
-            $p=$res['Password'];
+            $u= $res[0]['id'];
+            $p=$res[0]['Password'];
+
             if (isset($u) && !empty($p) && !empty($p)) {
                 if ($u == $id && $p == $pass) {
                     echo 'You have entered valid user name and password';
                     return true;
                 } else {
-                    $msg = 'Wrong username or password';
+                    echo 'Wrong username or password';
                     return false;
                 }
             }
@@ -107,3 +113,4 @@ class basemodel
         session_destroy();
     }
 }
+?>

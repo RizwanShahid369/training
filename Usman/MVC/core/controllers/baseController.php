@@ -1,53 +1,49 @@
 <?php
 
 include ('../core/viewManager.php');
+
 class baseController
 {
     public $controller;
     public $model;
     public $tpl;
+    public $result;
 
     public function __construct()
     {
         $this->viewManager = new ViewManager();
     }
 
-    public function model($model)
+    public function setController($cont)
     {
-        require_once ("../app/models/". $model . '.php');
-        $this->controller = $model;
-        $this->model = new $model;
-        return $this->model;
+        $this->controller = $cont;
+    }
+
+    public function setModel($model)
+    {
+        $this->model = $model;
     }
 
     public function displaySmarty($res)
     {
         $this->viewManager->addParams('arr', $res);
-        $this->viewManager->render('view', $this->controller);
+        $this->viewManager->render($this->model,'view', $this->controller);
     }
 
     public function displaySmartyInsert()
     {
-        include '../app/views/student/insert.tpl';
-        $this->viewManager->render('insert', $this->controller);
+        $this->viewManager->render($this->model, 'insert', $this->controller);
     }
 
-    public function displaySmartyDelete()
+    public function displaySmartyEdit($data)
     {
-        include '../app/views/student/delete.tpl';
-        $this->viewManager->render('delete', $this->controller);
-    }
-
-    public function displaySmartyEdit()
-    {
-        include '../app/views/student/edit.tpl';
-        $this->viewManager->render('edit', $this->controller);
+        $this->viewManager->data = $data;
+        $this->viewManager->render($this->model,'forms', $this->controller);
     }
 
     public function displaySmartyLogin()
     {
-        include '../app/views/login/login.tpl';
-        //$this->viewManager->render('login', $this->controller);
+        $this->viewManager->render($this->model,'login', $this->controller);
     }
     
     public function displaysmartLogout()
@@ -57,6 +53,6 @@ class baseController
 
     public function displaysmartNext()
     {
-        include '../app/views/next/next.tpl';
+        $this->viewManager->render($this->model,'index', $this->controller);
     }
 }

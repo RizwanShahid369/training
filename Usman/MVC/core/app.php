@@ -16,20 +16,18 @@ class app
     {
         $url = $this->parseUrl();
 
-        if (file_exists('../app/controllers/' . $url[0] . '.php')) {
-            $this->obj = $url[0];
-            
+        if (file_exists('../app/controllers/' . $url[0] . 'Controller.php')) {
+            $this->obj = $url[0].'Controller';
             unset($url[0]);
         }
 
         include '../app/controllers/'.$this->obj.'.php';
-
+        
         $this->obj = new $this->obj;
 
         if (isset($url[1])) {
             if (method_exists($this->obj, $url[1])) {
                 $this->method = $url[1];
-                echo "";
                 unset($url[1]);
             }
         }

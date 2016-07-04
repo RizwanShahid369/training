@@ -11,8 +11,8 @@
 /*
  * Display Errors
  */
-ini_set('display_errors', 1);
-include ('crieteria.php');
+//ini_set('display_errors', 1);
+//include ('crieteria.php');
 
 class database
 {
@@ -32,7 +32,7 @@ class database
 
         try {
             $this->db = new PDO($dsn, $username, $password);
-            echo "Connected \n";
+
         } catch(PDOException $e) {
             die('Could not connect to the database:<br/>' . $e);
         }
@@ -86,19 +86,19 @@ class database
 
     public function resultSet()
     {
-        $this->stmt->setFetchMode(\PDO::FETCH_ASSOC);
-     // $res = $this->stmt->fetch();
-        while($res = $this->stmt->fetch())
-        {
-            $arrRes= $res;
-        }
+        $this->stmt->setFetchMode(PDO::FETCH_ASSOC);
+        //$this->stmt->setFetchMode(PDO::FETCH_NUM);
+      $arrRes = $this->stmt->fetchAll();
+       //while($res = $this->stmt->fetchAll())
+        //{
+        //   $arrRes = $res;
+       //}
         if(isset($arrRes)) {
             return $arrRes;
         } else {
             return "N";
         }
     }
-
     // Task 2
 
     public function loginSelect($table, $fields, $whereCr)
@@ -189,18 +189,15 @@ class database
         }
         $fillTab = rtrim($fill, ", ");
 
-        $this->sql = "INSERT INTO $table ($fillTab) ". $whereCr->buildValues();
+        $this->sql = "INSERT INTO $table ($fillTab) ". $whereCr->values;
     }
 
-    public function bindInsert($n1, $d1, $fn1, $cl1, $a1, $ci1, $sc1,$n, $d, $fn, $cl, $a, $ci, $sc)
+    public function bindInsert($data)
     {
-        $this->stmt->bindParam($n1, $n);
-        $this->stmt->bindParam($d1, $d);
-        $this->stmt->bindParam($fn1, $fn);
-        $this->stmt->bindParam($cl1, $cl);
-        $this->stmt->bindParam($a1, $a);
-        $this->stmt->bindParam($ci1, $ci);
-        $this->stmt->bindParam($sc1, $sc);
+        foreach ($data as $key => $val)
+        {
+            $this->stmt->bindValue($key, $val);
+        }
     }
 
     /*
@@ -238,15 +235,17 @@ class database
      * WhereCr is object of crieteria class which contains where clause
      */
 
-    public function update($table, $fields, $whereCr)
+    public function update($table, $whereCr)
     {
-        $this->sql = "UPDATE $table SET $fields = :f WHERE ". $whereCr->getUpdateWhere();
+        $this->sql = "UPDATE $table". $whereCr->set. " WHERE ". $whereCr->getUpdateWhere();
     }
 
-    public function bindUpdate($col, $val, $col1, $val1)
+    public function bindUpdate($data)
     {
-        $this->stmt->bindParam($col, $val);
-        $this->stmt->bindParam($col1, $val1);
+        foreach ($data as $key => $val)
+        {
+            $this->stmt->bindValue($key, $val);
+        }
     }
 
     /*

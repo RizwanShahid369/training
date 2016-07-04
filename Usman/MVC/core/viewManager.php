@@ -11,6 +11,7 @@ include ('../vendors/Smarty/setup.php');
 class ViewManager
 {
     public $smarty;
+    public $data=array();
     public function __construct()
     {
         $this->smarty = new setup();
@@ -20,9 +21,15 @@ class ViewManager
         $this->smarty->addParams($key , $value);
     }
 
-    public function render($view, $controller)
+    public function render($model, $view, $controller)
     {
+        include '../app/views/$model/$view.tpl';
+
+        if(!empty($this->data)){
+            foreach ($this->data as $key=>$one){
+                $this->smarty->addParams($key,$one);
+            }
+        }
         $this->smarty->render($view, $controller);
     }
-
 }
