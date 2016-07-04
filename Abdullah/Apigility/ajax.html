@@ -1,0 +1,169 @@
+<html>
+<head>
+    <title>my page</title>
+</head>
+<body>
+
+<button name="getallteachers" id="getallteachers" >Get all teachers</button><br>
+<br>
+<input name="teacher-id" id="teacher-id">
+<button name="getteacher" id="getteacher" >Get the specific teacher</button><br>
+
+
+Teacher City: <input name="teachercity" id="teachercity"><br>
+Teacher Id: <input name="teacherId" id="teacherId"><br>
+<button name="deleteteacher" id="deleteteacher" >Delete</button>
+<button name="teacherinsert" id="teacherinsert" >Insert</button>
+<button name="updateteacher" id="updateteacher" >Update</button>
+<div id="res">Hello </div>
+<div id="abd"></div>
+</body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+
+ // For all teachers
+
+
+    $('#getallteachers').click(function() {
+
+        $.ajax({
+            type: "GET",
+            url: "http://localhost/apigility/public/teacher",
+            dataType: "json",
+            processdata: true,
+            success: function (data) {
+                console.log(" Succeed!");
+
+                //$("#res").html(data);
+ //               $("#abd").html(data.phonenumber);
+
+                $("#res").html(data.city);
+            },
+            error: function (data) {
+                alert("failed");
+            }
+        });
+    });
+
+
+
+
+ //For specific teacher
+
+
+
+    $('#getteacher').click(function() {
+
+        var id= $("#teacher-id").val();
+
+        $.ajax({
+
+            type: "GET",
+
+            url: "http://localhost/apigility/public/teacher/" + id,
+
+            dataType: "json",
+
+            processdata: true,
+
+            success: function (data) {
+
+                console.log("Succeed!");
+
+                var result = data.id;
+
+                $("#res").html(result).append(' ' + data.city);
+
+            },
+
+            error: function (data) {
+
+                alert("failed");
+            }
+        });
+    });
+
+
+// Delete Spcific teacher
+
+
+ $('#deleteteacher').click(function() {
+     var id = $('#teacher-id').val();
+     //alert(id);
+     $.ajax({
+         type: "DELETE",
+
+         contentType: "application/json",
+
+         dataType: "json",
+
+         url: "http://localhost/apigility/public/teacher/" + id,
+
+         success: function (data) {
+
+             console.log("Succeed!");
+
+             $("#res").html(data);
+         },
+
+         error: function (data) {
+
+             alert("failed");
+         }
+     });
+ });
+
+
+
+ //INSERT specific TEACHER
+
+ $('#teacherinsert').click(function() {
+     var city = $("#teachercity").val();
+
+     var teacherId = $('#teacherId').val();
+     $.ajax({
+         type: "POST",
+         url: "http://localhost/apigility/public/teacher",
+         dataType: "json",
+         data: JSON.stringify({
+             "city":city,
+             "Id":teacherId
+         }),
+         contentType: "application/json",
+         success: function (data) {
+             console.log("Succeed!");
+             $("#res").html(data);
+         },
+         error: function (data) {
+             alert("failed");
+         }
+     });
+ });
+
+
+ $('#updateteacher').click(function() {
+     var id = $('#teacher-id').val();
+     alert(id);
+     var city = $("#teachercity").val();
+     var teacherId = $('#teacherId').val();
+     $.ajax({
+         type: "PUT",
+         contentType: "application/json",
+         dataType: "json",
+         url: "http://localhost/apigility/public/teacher/" + id,
+         data: JSON.stringify({
+             "name":city,
+             "Id":teacherId
+         }),
+         success: function (data) {
+             console.log("Succeed!");
+             $("#res").html(data);
+         },
+         error: function (data) {
+             alert("failed");
+         }
+     });
+ });
+
+</script>
