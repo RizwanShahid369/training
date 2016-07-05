@@ -1,0 +1,66 @@
+<html>
+
+<script>
+
+
+
+
+ function Shoe (shoeSize, shoeColor, forGender, constructStyle) {
+this.size = shoeSize;
+this.color = shoeColor;
+this.gender = forGender;
+this.construction = constructStyle;
+
+//shoe(2,"pink","male","");
+
+}
+var beachShoe = new Shoe( 10, "blue", "women", "flipflop" );
+console.log(beachShoe.gender);
+
+var nShoe = new Shoe( 101, "pinkblue", "man", "notflipflop" );
+
+console.log(nShoe.construction);
+
+
+var x=6;
+var y="6";
+
+
+console.log(x.valueOf());
+console.log(y.valueOf());
+ var a=x.valueOf() == y.valueOf();
+console.log(a);
+
+ var b=x.valueOf() === y.valueOf();
+ console.log(b);
+
+
+
+
+
+
+
+
+ var cities = [ ["Kansas City", 464310], ["Topeka", 127939], ["Lenexa", 49398] ];
+ var twister = new Tornado( "F5", cities, 220 );
+ cities.push( ["Olathe", 130045] );
+
+
+ Object.prototype.findOwnerOfProperty
+         = function ( propName ) {
+     var currentObject = this;
+     while (currentObject !== null){
+         if (currentObject.hasOwnProperty(propName)) {
+             return currentObject;
+         }
+ else {
+         currentObject = currentObject.__proto__;
+     }
+ }
+     return "No property found!";
+ }
+
+ console.log(twister.findOwnerOfProperty("valueOf"));
+
+</script>
+</html>

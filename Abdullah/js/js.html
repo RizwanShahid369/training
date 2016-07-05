@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+var booksArray = ["Great Expectations", "The Remains of the Day", "Peter Pan"];
+var myBox = {
+height: 6, width: 8, length: 10, volume: 480,
+material: "cardboard",
+contents: booksArray
+
+};
+
+document.write(myBox.height);
+document.write(myBox.contents);
+
+myBox.height=myBox.height*100;
+document.write(myBox.height);
+myBox.contents.push("Hello");
+document.write(myBox.contents);
+myBox.contents.pop( );
+document.write(myBox.contents);
+    myBox.weight=10;
+console.log( myBox["weight"] );
+delete myBox.contents;
+document.write("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHh",myBox.contents);
+myBox.noofBooks= 0;
+
+
+function addBook (box, name, writer) {
+    box["noofbooks"]++;
+    box["book" + box["noofBooks"]] = {title: name, author: writer};
+
+}
+
+addBook(myBox, "Great Expectations", "Charles Dickens") ;
+
+
+document.write(myBox.noofBooks);
+
+/////////////////////////////////////////////////////////////////////////////
+function addCritter( container, name, type, species, length ) {
+    container[name] = {type: type, species: species, length: length};
+}
+
+var aquarium = {
+    Nemo: { type: "fish", species: "clownfish", length: 3.7 },
+    Marlin: { type: "fish", species: "clownfish", length: 4.1 },
+    Dory: { type: "fish", species: "blue tang", length: 6.2 },
+    Peach: { type: "echinoderm", species: "starfish", length: 5.3 },
+    "Coral Castle": { type: "environment", material: "coquina", moves: false },
+    "Dragon Statue": { type: "environment", material: "plastic", moves: false } ,
+    addCritter: function ( name, type, species, length ){
+    } ,
+};
+this[name] = {type: type, species: species, length: length};
+//Bubbles: { type: "fish", species: "yellow tang", length: 5.6 }
+aquarium.addCritter("Bubbles", "fish", "yellow tang", 5.6);
+
+//console.log(aquarium.Marlin);
+var witch = "I’ll get you, my pretty...and your little dog, too!";
+var scarecrow = "Well, some people without brains do an awful lot of talking don’t they?";
+var glinda = "Be gone! Before someone drops a house on you!";
+var dorothy = "There’s no place like home.";
+var lion = "Come on, get up and fight, you shivering junkyard!";
+var wizard = "Do not arouse the wrath of the great and powerful Oz!";
+var tinman = "Now I know I have a heart, because it’s breaking.";
+
+
+String.prototype .countAll = function ( letter ){
+    var letterCount = 0;
+    for (var i = 0; i<this.length; i++) {
+        if ( this.charAt(i).toUpperCase() == letter.toUpperCase() ) {
+
+
+         letterCount++;
+        }
+        }
+    return letterCount;
+    };
+
+document.write(lion.countAll("k"));
+
+
+var shoe = { size: 6, gender: "women", construction: "slipper"};
+
+var magicShoe = Object.create( shoe );
+
+magicShoe.jewels = "ruby";
+magicShoe.travelAction = "click heels";
+magicShoe.actionsRequired = 3;
+document .write(("Hfffffffffffffffffffffffffffffffffff",
+        shoe
+));
+
+
+</script>
+
+
+</body>
+</html>
