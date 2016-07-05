@@ -1,0 +1,77 @@
+﻿<html>
+<head>
+    <title>Teacher CRUD Backbone</title>
+    <script src="libs/jquery-1.9.1.js" type="text/javascript"></script>
+    <script src="libs/underscore.js" type="text/javascript"></script>
+    <script src="libs/json2.js" type="text/javascript"></script>
+    <script src="libs/backbone.js" type="text/javascript"></script>
+    <script src="js/model.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="main">
+    <script type="text/javascript">
+
+        function testCreate() {
+            var teacher = new Teacher({name: "Backbone name", designation: 'backbone designation'});
+            teacher.save({}, {
+                type: "POST",
+                success: function (model, respose, options) {
+                    console.log("The model has been saved to the server");
+                },
+                error: function (model, xhr, options) {
+                    console.log("Something went wrong while saving the model");
+                }
+            });
+        }
+
+        function testRead() {
+            var teacher1 = new Teacher({id: 109});
+            teacher1.fetch({
+                success: function (teacherResponse) {
+                    console.log("Found the Teacher: " + teacherResponse.get("name"));
+                }
+            });
+        }
+
+        function testDelete() {
+            var teacher2 = new Teacher({id: 108});
+            teacher2.destroy({
+                success: function (model, respose, options) {
+                    console.log("The model has deleted the server");
+                },
+                error: function (model, xhr, options) {
+                    console.log("Something went wrong while deleting the model");
+                }
+            });
+        }
+
+        function testUpdate() {
+            var teacher3 = new Teacher({id: 107});
+            teacher3.fetch({
+                success: function (teacherResponse) {
+                    console.log("Found the teacher name: " + teacherResponse.get("name"));
+                    console.log("Found the teacher designation: " + teacherResponse.get("designation"));
+
+                    teacherResponse.set("name", "updated name");
+                    teacherResponse.set("designation", "updated backbone");
+                    teacherResponse.save({}, {
+                        success: function (model, respose, options) {
+                            console.log("The model has been updated to the server");
+                        },
+                        error: function (model, xhr, options) {
+                            console.log("Something went wrong while updating the model");
+                        }
+                    });
+                }
+            });
+        }
+
+
+    </script>
+    <input id="Button1" type="button" value="Create Teacher" onclick="testCreate();"/>
+    <input id="Button2" type="button" value="Read Teacher" onclick="testRead();"/>
+    <input id="Button3" type="button" value="Update Teacher" onclick="testUpdate();"/>
+    <input id="Button4" type="button" value="Delete Teacher" onclick="testDelete();"/>
+</div>
+</body>
+</html>

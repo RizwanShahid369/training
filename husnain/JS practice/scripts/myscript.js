@@ -1,32 +1,32 @@
 /**
  * loops practice
- * 
+ *
  * @type {number}
  */
 var trainNumber = 1;
-while(trainNumber <=8) {
+while (trainNumber <= 8) {
 
     console.log("Train # " + trainNumber + " is running.");
     trainNumber++;
 }
 
 /**
- * practicing built in functions 
- * 
+ * practicing built in functions
+ *
  * @type {boolean}
  */
 
 var gotName = false;
-while(gotName == false) {
+while (gotName == false) {
     var userName = prompt("Whats your name ?");
-    if(confirm("are you sure your name is "+ userName)) {
-        alert("Thank you "+userName);
+    if (confirm("are you sure your name is " + userName)) {
+        alert("Thank you " + userName);
         gotName = true;
     }
 }
 /**
  * Custom functions example
- * 
+ *
  * @param a
  * @param b
  * @returns {*}
@@ -38,32 +38,32 @@ function sum(a, b) {
 
 }
 
-alert("sum is "+sum(3, 5));
+alert("sum is " + sum(3, 5));
 
 /**
- * array examples 
- * 
+ * array examples
+ *
  * @type {number[]}
  */
-var numberList = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
+var numberList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
-for(var i = 0; i < numberList.length; i++) {
+for (var i = 0; i < numberList.length; i++) {
 
-    if(!(numberList[i] % 2 == 0)) {
+    if (!(numberList[i] % 2 == 0)) {
         numberList[i] = undefined;
     }
 }
 console.log(numberList);
 
 /**
- * array manipulations 
- * 
+ * array manipulations
+ *
  * @param name
  * @param list
  * @returns {*}
  */
 
-function deletePassenger ( name, list ) {
+function deletePassenger(name, list) {
 
     if (list.length == 0) {
 
@@ -87,8 +87,8 @@ function deletePassenger ( name, list ) {
 }
 
 /**
- * simple function expression 
- * 
+ * simple function expression
+ *
  * @param a
  * @param b
  * @returns {number}
@@ -99,17 +99,17 @@ var diff = function differenceFunction(a, b) {
 
 }
 
-console.log("difference is "+ diff(10 , 3));
+console.log("difference is " + diff(10, 3));
 
 /**
  * function expression with map
- * 
+ *
  */
-var numbers = [1,3,5,6,7,8,9,12,45,67,8];
+var numbers = [1, 3, 5, 6, 7, 8, 9, 12, 45, 67, 8];
 
 var result = numbers.map(function (val) {
     return val * 2;
-    
+
 });
 console.log("doubled array is " + result);
 
@@ -120,7 +120,7 @@ console.log("doubled array is " + result);
  * @returns {Function}
  */
 
-function buildCoveTicketMaker( transport ) {
+function buildCoveTicketMaker(transport) {
     var passengerNumber = 0;
     return function (name) {
         passengerNumber++;
@@ -136,12 +136,12 @@ getSubmarineticket("ahmad");
 
 /**
  * Hoisting Example
- * 
+ *
  * @param numPassengers
  * @param capacity
  */
 
-function capacityStatus (numPassengers, capacity) {
+function capacityStatus(numPassengers, capacity) {
 
     var noSeats = function () {
 
@@ -150,15 +150,15 @@ function capacityStatus (numPassengers, capacity) {
     }
 
     var seatAvailable = function () {
-        alert("there are "+ (capacity - numPassengers) + " seats available");
+        alert("there are " + (capacity - numPassengers) + " seats available");
         return true;
 
     }
 
-    if(numPassengers == capacity) {
+    if (numPassengers == capacity) {
         noSeats();
     } else {
         seatAvailable();
     }
 }
-capacityStatus(57,60);
+capacityStatus(57, 60);
