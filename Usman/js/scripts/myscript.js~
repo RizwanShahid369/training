@@ -1,0 +1,5 @@
+console.log("Train #" + 1 + " is running.");
+
+var trainsOperational = 8;
+trainsOperational = trainsOperational + 4;
+"There are " + trainsOperational + " running trains.";
